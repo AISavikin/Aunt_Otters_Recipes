@@ -17,7 +17,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class RecipeAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorUploadingWidget())
+    # content = forms.CharField(widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Recipe
