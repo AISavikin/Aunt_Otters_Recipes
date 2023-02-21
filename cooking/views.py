@@ -9,7 +9,7 @@ from .forms import AddIngredientForm, CreateRecipeForm
 class Home(ListView):
     model = Recipe
     template_name = 'cooking/index.html'
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = 'recipes'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -20,7 +20,7 @@ class Home(ListView):
 
 class RecipeByCategory(ListView):
     template_name = 'cooking/index.html'
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = 'recipes'
 
     def get_queryset(self):
@@ -34,7 +34,7 @@ class RecipeByCategory(ListView):
 
 class RecipeByTag(ListView):
     template_name = 'cooking/index.html'
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = 'recipes'
 
     def get_queryset(self):

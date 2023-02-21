@@ -15,7 +15,6 @@
         </div>
 
         {# Форма #}
-
         <div class="row mb-5">
             <div class="col">
                 <form action="{% url 'home' %}add_ingredients/{{ recipe.slug }}" method="post">
@@ -62,17 +61,6 @@
                 {% include 'inc/_table_ingredients.html' %}
             </div>
         </div>
-
     </div>
 
 {% endblock %}
-
-<div class="row ml-2">
-    <div class="col-md-3">
-        <form action="{% url 'home' %}add_ingredients/{{ recipe.slug }}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Добавить" class="form-control">
-        </form>
-    </div>
-</div>

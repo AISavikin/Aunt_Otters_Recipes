@@ -8,6 +8,5 @@ urlpatterns = [
     path('resipe/<str:slug>', Single.as_view(), name='recipe'),
     path('search/', Search.as_view(), name='search'),
     path('create-recipe', CreateRecipe.as_view(), name='create_recipe'),
-    # path('add_ingredients/<str:slug>', AddIngredient.as_view(), name='add_ingredients'),
     path('add_ingredients/<str:slug>', add_ingredients, name='add_ingredients')
 ]
