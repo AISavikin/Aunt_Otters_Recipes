@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    Добавить рецепт {{ block.super }}
+{% endblock %}
+{% block content %}
+    <div class="col-xl-8 py-5 px-md-5">
+        <div class="row pt-md-4">
+            <form action="{% url 'create_recipe' %}" method="post">
+                <div class="form-group">
+                    <div class="card-title">
+                        <h1>Добавить рецепт</h1>
+                    </div>
+                    <div class="card card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Добавить" class="form-control">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

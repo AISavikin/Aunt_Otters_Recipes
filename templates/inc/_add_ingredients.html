@@ -1,0 +1,11 @@
+<div class="collapse col-md-12" id="collapseAdd">
+    <form action="{{ recipe.get_absolute_url }}" method="post" class="comment-form-wrap">
+        <div class="form-group subscribe-form">
+            <div class="card card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Добавить" class="form-control">
+            </div>
+        </div>
+    </form>
+</div>

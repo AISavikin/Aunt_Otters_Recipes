@@ -1,0 +1,26 @@
+{% if recipe.ingredients.exists %}
+        <table class="table table-bordered ">
+            <thead class="table-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Продукт</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Единицы</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ingredient in recipe.ingredients.all %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ ingredient }}</td>
+                    {% if ingredient.amount == 0 %}
+                        <td colspan="2">По вкусу</td>
+                    {% else %}
+                        <td>{{ ingredient.amount|floatformat }}</td>
+                        <td>{{ ingredient.unit }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endif %}

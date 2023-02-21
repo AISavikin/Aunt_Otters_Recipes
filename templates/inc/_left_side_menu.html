@@ -1,0 +1,34 @@
+{% load static %}
+
+
+<nav id="colorlib-main-menu" role="navigation">
+    <ul>
+        <li class="colorlib-active"><a href="{% url 'home' %}">Главная страница</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'create_recipe' %}">Добавить рецепт</a></li>
+            <li><a href="/admin">Админка</a></li>
+        {% endif %}
+        <li><a href="#">О нас</a></li>
+
+    </ul>
+</nav>
+
+<div class="colorlib-footer">
+    <h1 id="colorlib-logo" class="mb-4"><a href="{% url 'home' %}"
+                                           style="background-image: url( {% static 'images/bg_h1.jpg' %});">Aunt
+        <span class="mb-4">Otter's Recipes</span></a></h1>
+    <div class="mb-4">
+        <h3>Поиск по сайту</h3>
+        <form action="{% url 'search' %}" class="colorlib-subscribe-form" method="get">
+            <div class="form-group d-flex">
+                <div class="icon"><span class="icon-search"></span></div>
+                <input type="text" class="form-control" placeholder="Введите запрос" name="s">
+            </div>
+        </form>
+    </div>
+    <p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+        All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a
+                href="https://colorlib.com" target="_blank">Colorlib</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+</div>

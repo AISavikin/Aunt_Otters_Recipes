@@ -1,0 +1,47 @@
+{% load static %}
+
+<div class="sidebar-box ftco-animate">
+    <h3 class="sidebar-heading">Категории</h3>
+    <ul class="categories">
+        {% for item in categories %}
+            {% if item.recipes.exists %}
+                <li><a href="{{ item.get_absolute_url }}">{{ item.title }}<span>({{ item.cnt }})</span></a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="sidebar-box ftco-animate">
+    <h3 class="sidebar-heading">Облако тэгов</h3>
+    <ul class="tagcloud">
+        {% for item in tags %}
+            {% if item.recipes.exists %}
+            <a href="{{ item.get_absolute_url }}" class="tag-cloud-link">{{ item.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="sidebar-box ftco-animate">
+    <h3 class="sidebar-heading">Популярные рецепты</h3>
+    {% for item in popular %}
+        <div class="block-21 mb-4 d-flex">
+            {% if item.photo %}
+                <a class="blog-img mr-4" style="background-image: url({{ item.photo.url }});"></a>
+            {% else %}
+                <a class="blog-img mr-4" style="background-image: url({% static 'images/plug.jpg' %});"></a>
+
+            {% endif %}
+            <div class="text">
+
+                <h3 class="heading"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+                <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> {{ item.created_at }}</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+                    <div><span class="icon-eye"></span> {{ item.views }}</div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
