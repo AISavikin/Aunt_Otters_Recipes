@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+# from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib.admin import AdminSite
 from django.utils.safestring import mark_safe
 from .models import *
