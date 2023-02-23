@@ -3,7 +3,7 @@
         Ингридиенты
     </p>
     {% for ingredient in recipe.ingredients.all %}
-        <p class="">
+        <p class="lh-1">
             <span class="font-weight-bold ">{{ ingredient }} - </span>
             {% if ingredient.amount == 0 %}
                 <span class="font-italic"> По вкусу </span>

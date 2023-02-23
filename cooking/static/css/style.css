@@ -9320,3 +9320,6 @@ textarea.form-control {
     padding-right: 0.75rem;
     background-image: none;
 }
+.lh-1 {
+    line-height: 1!important;
+}

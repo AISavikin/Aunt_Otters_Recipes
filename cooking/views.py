@@ -45,30 +45,6 @@ class RecipeByTag(ListView):
         context['title'] = Tag.objects.get(slug=self.kwargs['slug'])
         return context
 
-
-# class Single2(FormMixin, DetailView):
-#     model = Recipe
-#     template_name = 'cooking/single.html'
-#     context_object_name = 'recipe'
-#     form_class = AddIngredientForm
-#
-#     def get_success_url(self):
-#         return Recipe.objects.get(slug=self.kwargs['slug']).get_absolute_url() + '#123'
-#
-#     def post(self, request, *args, **kwargs):
-#         print(request.POST)
-#         form = self.get_form()
-#         return self.form_valid(form)
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = self.object.title
-#         context['form'] = self.get_form()
-#         self.object.views = F('views') + 1
-#         self.object.save()
-#         self.object.refresh_from_db()
-#         return context
-
 class Single(DetailView):
     model = Recipe
     template_name = 'cooking/single.html'
@@ -86,20 +62,6 @@ class CreateRecipe(CreateView):
     template_name = 'cooking/create-recipe.html'
     model = Recipe
     form_class = CreateRecipeForm
-
-# class AddIngredient(CreateView):
-#     form_class = AddIngredientForm
-#     template_name = 'cooking/add_ingredients.html'
-#
-#     def get_success_url(self):
-#         return self.kwargs['slug']
-#
-#     def get_context_data(self, **kwargs):
-#
-#         context = super().get_context_data(**kwargs)
-#         recipe = Recipe.objects.get(slug=self.kwargs['slug'])
-#         context['recipe'] = recipe
-#         return context
 
 
 class Search(ListView):

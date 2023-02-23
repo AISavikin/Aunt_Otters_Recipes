@@ -1,16 +1,10 @@
 {% if recipe.spices.exists %}
-        <table class="table table-bordered">
-            <thead class="table-info">
-            <tr>
-                <th scope="col">Специи</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for spice in recipe.spices.all %}
-                <tr>
-                    <td>{{ spice }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <p class="lead">
+        Специи
+    </p>
+    {% for spice in recipe.spices.all %}
+    <p class="lh-1">
+    <span class="font-weight-bold ">{{ spice }}</span>
+    </p>
+    {% endfor %}
 {% endif %}
