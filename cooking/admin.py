@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-# from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib.admin import AdminSite
 from django.utils.safestring import mark_safe
 from .models import *
@@ -17,7 +17,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class RecipeAdminForm(forms.ModelForm):
-    # content = forms.CharField(widget=CKEditorUploadingWidget())
+    content = forms.CharField(widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Recipe
