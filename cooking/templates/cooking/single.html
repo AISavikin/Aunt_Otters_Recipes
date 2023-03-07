@@ -29,7 +29,7 @@
 
         <div class="row mb-3">
             {% if request.user.is_authenticated %}
-                <div class="col-4">
+                <div class="col-md-4 col-sm-6 mb-2 ">
                     <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">
                         <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент
                         </button>
@@ -37,7 +37,7 @@
                 </div>
             {% endif %}
             {% if recipe.video %}
-                <div class="col-4">
+                <div class="col-md-4 col-sm-6 mb-2 ">
                     <button class="btn btn-primary" type="button" data-toggle="collapse"
                             data-target="#collapseVideo"
                             aria-expanded="false" aria-controls="collapseVideo"> Видео по рецепту
