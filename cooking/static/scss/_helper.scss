@@ -1,0 +1,366 @@
+//
+// helper.scss
+//
+.section {
+    padding: 100px 0;
+    position: relative;
+    @media (max-width: 768px) {
+        padding: 60px 0;
+    }
+}
+.section-two {
+    padding: 60px 0;
+    position: relative;
+}
+.bg-overlay {
+    background-color: $overlay;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%
+}
+
+.bg-gradient-primary {
+    background: $bg-gradient-primary;
+}
+
+.bg-linear-gradient {
+    background: $linear-gradient;
+}
+
+.bg-gradient-overlay {
+    background: $gradient-overlay;
+}
+
+.bg-gradient-white-overlay {
+    background: $gradient-white-overlay;
+}
+
+.bg-gradient-overlay-white {
+    background-image: linear-gradient(to left, 
+                            rgba($white, 0.1) 0%,
+                            rgba($white, 0.3) 5%,
+                            rgba($white, 0.5) 10%,
+                            rgba($white, 0.7) 15%,
+                            rgba($white, 0.9) 20%,
+                            rgba($white, 1) 25%,
+                            rgba($white, 1) 30%,
+                            rgba($white, 1) 35%,
+                            rgba($white, 1) 40%,
+                            rgba($white, 1) 45%,
+                            rgba($white, 1) 50%,
+                            rgba($white, 1) 55%,
+                            rgba($white, 1) 60%,
+                            rgba($white, 1) 65%,
+                            rgba($white, 1) 70%,
+                            rgba($white, 1) 75%,
+                            rgba($white, 0.9) 80%,
+                            rgba($white, 0.7) 85%,
+                            rgba($white, 0.5) 90%,
+                            rgba($white, 0.3) 95%,
+                            rgba($white, 0.1) 100%);
+}
+
+.bg-gradient-overlay-dark {
+    background-image: linear-gradient(to left, 
+                            rgba($black, 0.1) 0%,
+                            rgba($black, 0.3) 5%,
+                            rgba($black, 0.5) 10%,
+                            rgba($black, 0.7) 15%,
+                            rgba($black, 0.9) 20%,
+                            rgba($black, 1) 25%,
+                            rgba($black, 1) 30%,
+                            rgba($black, 1) 35%,
+                            rgba($black, 1) 40%,
+                            rgba($black, 1) 45%,
+                            rgba($black, 1) 50%,
+                            rgba($black, 1) 55%,
+                            rgba($black, 1) 60%,
+                            rgba($black, 1) 65%,
+                            rgba($black, 1) 70%,
+                            rgba($black, 1) 75%,
+                            rgba($black, 0.9) 80%,
+                            rgba($black, 0.7) 85%,
+                            rgba($black, 0.5) 90%,
+                            rgba($black, 0.3) 95%,
+                            rgba($black, 0.1) 100%);
+}
+
+.bg-overlay-white {
+    background-color: $bg-overlay-white;
+}
+
+//Card
+.card {
+    border: none;
+    .card-img {
+        position: relative;
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            background: $card-overlay;
+            transition: all 0.5s ease;
+        }
+    }
+    &:hover {
+        .card-img {
+            .card-overlay {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+//features-absolute
+.features-absolute {
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.features-absolute {
+    margin: -200px 0 0px;
+
+    @media (max-width: 768px) {
+        margin: -140px 0 0;
+    }
+}
+
+//Title
+.title-heading {
+    line-height: 26px;
+    .heading {
+        font-size: 45px !important;
+        letter-spacing: 1px;
+        &.page-heading {
+            font-size: 36px !important;
+            @media (max-width: 768px) {
+                font-size: 30px !important;
+            }
+        }
+        @media (max-width: 768px) {
+            font-size: 36px !important;
+        }
+    }
+    .para-desc {
+        font-size: 16px;
+    }
+}
+.section-title {
+    .title {
+        font-size: 28px !important;
+        
+        @media (max-width: 768px) {
+            font-size: 24px !important;
+        }
+    }
+}
+.para-desc {
+    max-width: 600px;
+}
+.mt-100 {
+    margin-top: 100px;
+}
+
+//Shapes
+.shape {
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    &>svg {
+        transform: scale(2);
+        width: 100%;
+        height: auto;
+        transform-origin: top center;
+    }
+
+    &.seo-hero {
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        height: 250px;
+        background: $white;
+        
+        @media (max-width: 768px) {
+            height: 140px;
+        }
+
+        @media (max-width: 425px) {
+            height: 60px;
+        }
+    }
+    
+    @media (max-width: 425px) {
+        bottom: -4px;
+    }
+}
+
+.home-shape-arrow {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 25px;
+    z-index: 1;
+    left: 0;
+    i {
+        background: $light;
+        height: 50px;
+        width: 50px;
+        margin: 0 auto;
+        line-height: 50px;
+        text-align: center;
+        box-shadow: $shadow;
+        border-radius: 30px;
+    }
+    .arrow-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        display: inline-block;
+    }
+}
+
+
+//Ribbon
+.ribbon {
+    @each $name,
+    $value in $colors {
+        &.ribbon-#{$name} {
+            span {
+                background-color: #{$value} !important;
+                &:before {
+                    border-left-color: darken($value, 10%);
+                    border-top-color: darken($value, 10%);
+                }
+        
+                &:after {
+                    border-right-color: darken($value, 10%);
+                    border-top-color: darken($value, 10%);
+                }
+            }
+        }
+    }
+}
+
+.ribbon {
+    position: absolute;
+    top: -5px;
+    width: 75px;
+    height: 75px;
+    z-index: 2;
+    &.ribbon-right {
+        right: -5px;
+        span {
+            right: -22px;
+            transform: rotate(45deg);
+        }
+    }
+    &.ribbon-left {
+        left: -5px;
+        span {
+            left: -22px;
+            transform: rotate(-45deg);
+        }
+    }
+    span {
+        position: absolute;
+        top: 17px;
+        width: 100px;
+        color: $white;
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            z-index: -1;
+            border: 3px solid transparent;
+        }
+        &:before {
+            left: 0;
+        }
+
+        &:after {
+            right: 0;
+        }
+    }
+}
+
+// Text Slider
+.text-slider {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    > ul {
+        white-space: nowrap;
+    }
+    .move-text {
+        animation: moveSlideshow 12s linear infinite;
+    }
+}  
+@keyframes moveSlideshow {
+    100% { 
+        transform: translateX(-45%);  
+    }
+}
+
+//Mover
+.mover {
+    animation: mover 1s infinite alternate;
+}
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+//Feature post placeholder
+.feature-posts-placeholder {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 66.6%;
+
+    @media (max-width: 425px) {
+        height: 80%;
+    }
+}
+
+//Image Fluid Responsive
+.img-fluid-responsive {
+    img {
+        @media (max-width: 768px) {
+            max-width: 550px;
+        }
+        
+        @media (max-width: 767px) {    
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .margin-top-100 {
+        margin-top: 100px;
+    }
+}
+@media (max-width: 768px) {
+    .mt-60 {
+        margin-top: 60px;
+    }   
+}

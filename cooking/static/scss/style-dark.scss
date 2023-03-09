@@ -1,0 +1,79 @@
+/* Template Name: Fronter - One Page & Multipurpose Parallax Template
+   Author: Shreethemes
+   Email: support@shreethemes.in
+   Website: https://shreethemes.in
+   Version: 1.1.0
+   Created: January 2022
+   File Description: Main Css file of the template
+*/
+/*********************************/
+/*         INDEX                 */
+/*================================
+ *     01.  Variables            *
+ *     02.  General              *
+ *     03.  Helper               *
+ *     04.  Bootstrap Custom     *
+ *     05.  Components           *
+ *     06.  Menu                 *
+ *     07.  Home / Landing       *
+ *     08.  About Us             *
+ *     09.  Blog                 *
+ *     10.  Portfolio            *
+ *     11.  Countdown            *
+ *     12.  Features             *
+ *     13.  Testimonial          *
+ *     14.  Price                *
+ *     15.  Team                 *
+ *     16.  Contact              *
+ *     17.  Footer               *
+ *     18.  Photography          *
+ *     19.  Restaurant           *
+ *     20.  Gym                  *
+ *********************************
+ 
+ *********************************
+ *         Dark SCSS             *
+ *********************************
+ *     01.  Variables            *
+ *     02.  Bootstrap Custom     *
+ *     03.  Components           *
+ *     04.  General              *
+ *     05.  Helper               *
+ *     06.  Menu                 *
+ *     07.  Photography          *
+ *     08.  Restaurant           *
+ *     09.  Gym                  *
+ ================================*/
+
+ @import "variables";
+ @import "bootstrap-custom";
+ @import "components";
+ @import "general";
+ @import "helper";
+ @import "menu";
+ @import "home";
+ @import "features";
+ @import "cta";
+ @import "team";
+ @import "testi";
+ @import "portfolio";
+ @import "blog";
+ @import "pricing";
+ @import "countdown";
+ @import "contact";
+ @import "footer";
+
+//Demos
+@import "cafe";
+@import "restaurant";
+// @import "gym";
+
+//Dark 
+@import "dark/variables";
+@import "dark/bootstrap-custom";
+@import "dark/components";
+@import "dark/general";
+@import "dark/helper";
+@import "dark/menu";
+@import "dark/cafe";
+@import "dark/restaurant";

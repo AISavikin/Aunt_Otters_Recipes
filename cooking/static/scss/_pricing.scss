@@ -1,0 +1,21 @@
+//
+// _pricing.scss
+//
+.pricing {
+    @each $name,
+    $value in $colors {
+        &.pricing-#{$name} {
+            color: $dark;
+        }
+    }
+}
+
+
+.pricing {
+    transition: all 0.5s ease;
+    &.price-two {
+        &:hover {
+            box-shadow: $shadow-lg !important;
+        }
+    }
+}

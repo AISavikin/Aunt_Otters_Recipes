@@ -1,0 +1,136 @@
+//
+// helper.scss
+//
+
+/*********************************/
+/*     Helper-DARK               */
+/*===============================*/
+
+.bg-overlay {
+    background: $overlay;
+}
+
+.bg-overlay-white {
+    background: $bg-overlay-white;
+}
+
+.bg-gradient-primary {
+    background: $bg-gradient-primary;
+}
+
+// .bg-linear-gradient {
+//     background: $linear-gradient;
+// }
+
+.bg-linear-gradient-2 {
+    background: $linear-gradient-2;
+}
+
+.bg-linear-gradient-3 {
+    background: $linear-gradient-3;
+}
+
+.bg-gradient-overlay {
+    background: $gradient-overlay;
+}
+
+.bg-gradient-white-overlay {
+    background: $bg-overlay-white;
+}
+
+.text-shadow-title {
+    text-shadow: 2px 0 0 $dark, -2px 0 0 $dark, 0 4px 0 rgba($dark, 0.4), 0 -2px 0 $dark, 1px 1px $dark, -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark;
+}
+
+//Title
+.title-dark {
+    color: $dark !important;
+}
+.title-dark-50 {
+    color: rgba($dark, 0.5) !important;
+}
+.para-dark {
+    color: $muted !important;
+}
+.title-white {
+    color: $white !important;
+}
+.title-bg-dark {
+    background: $dark !important;
+}
+
+.bg-white-dark {
+    background: $white !important;
+}
+
+
+
+.bg-gradient-overlay-white {
+    background-image: linear-gradient(to left, 
+                            rgba($white, 0.1) 0%,
+                            rgba($white, 0.3) 5%,
+                            rgba($white, 0.5) 10%,
+                            rgba($white, 0.7) 15%,
+                            rgba($white, 0.9) 20%,
+                            rgba($white, 1) 25%,
+                            rgba($white, 1) 30%,
+                            rgba($white, 1) 35%,
+                            rgba($white, 1) 40%,
+                            rgba($white, 1) 45%,
+                            rgba($white, 1) 50%,
+                            rgba($white, 1) 55%,
+                            rgba($white, 1) 60%,
+                            rgba($white, 1) 65%,
+                            rgba($white, 1) 70%,
+                            rgba($white, 1) 75%,
+                            rgba($white, 0.9) 80%,
+                            rgba($white, 0.7) 85%,
+                            rgba($white, 0.5) 90%,
+                            rgba($white, 0.3) 95%,
+                            rgba($white, 0.1) 100%);
+}
+
+.bg-gradient-overlay-dark {
+    background-image: linear-gradient(to left, 
+                            rgba($black, 0.1) 0%,
+                            rgba($black, 0.3) 5%,
+                            rgba($black, 0.5) 10%,
+                            rgba($black, 0.7) 15%,
+                            rgba($black, 0.9) 20%,
+                            rgba($black, 1) 25%,
+                            rgba($black, 1) 30%,
+                            rgba($black, 1) 35%,
+                            rgba($black, 1) 40%,
+                            rgba($black, 1) 45%,
+                            rgba($black, 1) 50%,
+                            rgba($black, 1) 55%,
+                            rgba($black, 1) 60%,
+                            rgba($black, 1) 65%,
+                            rgba($black, 1) 70%,
+                            rgba($black, 1) 75%,
+                            rgba($black, 0.9) 80%,
+                            rgba($black, 0.7) 85%,
+                            rgba($black, 0.5) 90%,
+                            rgba($black, 0.3) 95%,
+                            rgba($black, 0.1) 100%);
+}
+
+
+//Shapes
+.shape {
+    &.seo-hero {
+        background: $white;
+    }
+}
+
+.home-shape-arrow {
+    i {
+        background: $white;
+        box-shadow: $shadow;
+    }
+}
+
+//CTA
+.play-btn {
+    color: $white;
+}

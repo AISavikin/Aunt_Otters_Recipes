@@ -1,0 +1,144 @@
+//
+// _features.scss
+//
+
+.features {
+    @each $name,
+    $value in $colors {
+        &.feature-#{$name} {
+            .title {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+            .icon {
+                color: $value !important;
+            }
+            .link {
+                color: $value !important;
+            }
+            .fea-icon {
+                background-color: $value;
+                &.bg-soft {
+                    background-color: rgba($value, 0.1);
+                    color: $value;
+                }
+            }
+            &.feature-bg {
+                &:hover {
+                    background: $value;
+                    .fea-icon {
+                        color: $value !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.features {
+    transition: all 0.5s ease;
+    .title {
+        transition: all 0.5s ease;
+    }
+    .fea-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s ease;
+        i {
+            font-size: 24px;
+        }
+    }
+    &.feature-bg {
+        &:hover {
+            .title {
+                color: $white !important;
+            }
+            .para {
+                color: rgba($white, 0.5) !important;
+            }
+            .fea-icon {
+                background: $white !important;
+            }
+        }
+    }
+    &.features-classic {
+        &:hover {
+            box-shadow: $shadow-lg !important;
+        }
+    }
+
+    &.features-modern {
+        .overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease;
+        }
+        .content {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            transform: scale(1.2);
+            transition: all 0.5s ease;
+            opacity: 0;
+            border: 1px dashed $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &:hover {
+            .content {
+                transform: scale(1);
+                opacity: 1;
+            }
+            .overlay {
+                background-color: rgba($dark, 0.7);
+            }
+        }
+    }
+}
+
+.process-bar {
+    &:after {
+        display: block;
+        width: 50%;
+        position: absolute;
+        content: '';
+        border-width: 0 0 1px 0;
+        border: 1px $gray-200 dashed;
+        top: 15%;
+        left: 75%;
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
+}
+
+.app-feature-shape {
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+        width: 35rem;
+        height: 35rem;
+        border-radius: 50%;
+        background: $light;
+        box-shadow: $shadow;
+
+        @media (max-width: 768px) {
+            width: 25rem;
+            height: 25rem;
+        }
+    }
+}

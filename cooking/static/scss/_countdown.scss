@@ -1,0 +1,70 @@
+//
+// countdown.scss
+//
+
+/*====================================*/
+/* Countdown(Comingsoon, Maintenance) */
+/*====================================*/
+#countdown, #event-sale {
+    .count-down {
+        display: inline-block;
+        margin: 30px 10px 10px;
+        color: $white;
+        text-align: center;
+        .count-number {
+            font-size: 40px;
+            line-height: 95px;
+        }
+        .count-head {
+            display: block;
+            position: relative;
+            transform: translateY(-20px);
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+#countdown {
+    .count-down {
+        .count-number {
+            font-size: 40px;
+            line-height: 95px;
+            border: 4px solid $gray-300;
+            height: 130px;
+            width: 130px;
+            border-radius: 50%;
+        }
+    }
+}
+
+//event-sale
+#event-sale {
+    .count-down {
+        border: 0;
+        color: $white !important;
+        .count-number {
+            line-height: 80px;
+            @media (max-width: 767px){
+                font-size: 30px;
+            }
+        }
+        .count-head {
+            margin-bottom: 0 !important;
+            transform: translateY(-15px);
+            @media (max-width: 767px){
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+//maintenance
+#maintenance {
+    letter-spacing: 1px;
+    
+    .indicator {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,56 @@
+//
+// _testi.scss
+//
+
+.client-testi {
+    cursor: e-resize;
+}
+
+.tns-nav {
+    text-align: center;
+    margin-top: 10px;
+    button {
+        border-radius: 30px;
+        background: rgba($primary, 0.5) !important;
+        transition: all 0.5s ease;
+        border: none;
+        margin: 0 5px;
+        padding: 3px;
+        border: 1px solid $white;
+        &.tns-nav-active {
+            background: $primary !important;
+            padding: 3px 5px;
+            border-color: $primary;
+        }
+    }
+}
+
+//tiny-single-item
+.tns-controls {
+    button[data-controls="prev"],
+    button[data-controls="next"] {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: $white;
+        color: $dark;
+        border: none;
+        transition: all 0.5s ease;
+        z-index: 1;
+        box-shadow: $shadow-lg;
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+    }
+    button[data-controls="prev"] {
+        left: 0;
+    }
+    button[data-controls="next"] {
+        right: 0;
+    }
+}

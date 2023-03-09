@@ -1,0 +1,980 @@
+//
+// components.scss
+//
+
+/*********************************/
+/*     Components-DARK           */
+/*===============================*/
+
+//Buttons
+@each $name,
+$value in $colors {
+    .btn-#{$name} {
+        background-color: #{$value} !important;
+        border: 1px solid #{$value} !important;
+        color: $dark !important;
+        box-shadow: 0 3px 5px 0 rgba($value, 0.3);
+        &:hover, &:focus, &:active, &.active, &.focus{
+            background-color: darken($value, 10%) !important;
+            border-color: darken($value, 10%) !important;
+            color: $dark !important;
+        }
+    }
+
+    .btn-soft-#{$name} {
+        background-color: rgba($value, 0.1) !important;
+        border: 1px solid rgba($value, 0.1) !important;
+        color: #{$value} !important;
+        box-shadow: 0 3px 5px 0 rgba($value, 0.3);
+        &:hover, &:focus, &:active, &.active, &.focus{
+            background-color: #{$value} !important;
+            border-color: #{$value} !important;
+            color: $dark !important;
+        }
+    }
+
+    .btn-outline-#{$name} {
+        border: 1px solid #{$value};
+        color: #{$value};
+        background-color: transparent;    
+        &:hover, &:focus, &:active, &.active, &.focus, &:not(:disabled):not(.disabled):active{
+            background-color: #{$value};
+            border-color: #{$value};
+            color: $dark !important;
+            box-shadow: 0 3px 5px 0 rgba($value, 0.3);
+        }
+    }
+}
+.btn {
+    &.btn-dark {
+        color: $white !important;
+        background: $dark !important;
+        border: 1px solid $gray-100 !important;
+        &:hover, &:focus, &:active, &.active, &.focus {
+            background-color: darken($dark, 5%) !important;
+            color: $white !important; 
+        }
+    }    
+    &.btn-soft-dark {
+        color: rgba($dark, 0.5) !important;
+        border: 1px solid $gray-100 !important;
+        &:hover, &:focus, &:active, &.active, &.focus{
+            color: $white !important; 
+        }
+    }    
+    &.btn-outline-dark {
+        border: 1px solid $gray-100 !important;
+        color: $dark !important;
+        background-color: transparent;    
+        &:hover, &:focus, &:active, &.active, &.focus {
+            background-color: $dark !important;
+            color: $white !important;
+        }
+    }
+    &.btn-light {
+        color: $dark !important;
+        border-color: darken($gray-200, 15%) !important;
+        &:hover, &:focus, &:active, &.active, &.focus{
+            background-color: lighten($light, 10%) !important;
+            color: $dark !important;
+        }
+    }    
+    &.btn-soft-light {
+        color: rgba($dark, 0.5) !important;
+        border: 1px solid darken($gray-200, 15%) !important;
+        &:hover, &:focus, &:active, &.active, &.focus{
+            color: $dark !important; 
+        }
+    }    
+    &.btn-outline-light {
+        border-color: darken($gray-200, 15%) !important;
+        color: $dark !important;
+        &:hover, &:focus, &:active, &.active, &.focus{
+            background-color: lighten($light, 10%) !important;
+            color: $dark !important;
+        }
+    }
+}
+
+button:not(:disabled) {
+    outline: none;
+}
+//Shadow 
+.shadow {
+    box-shadow: $shadow !important;
+}
+
+.shadow-lg {
+    box-shadow: $shadow-lg !important;
+}
+
+//Badges
+@each $name,
+$value in $colors {
+    .badge-#{$name} {
+        background-color: #{$value} !important;
+        color: $dark !important;
+    }
+
+    .badge-outline-#{$name} {
+        background-color: transparent !important;
+        color: #{$value} !important;
+        border: 1px solid #{$value} !important;
+    }
+}
+.badge {
+    &.badge-dark {
+        color: $white !important;
+        background-color: $dark !important;
+    }
+    &.badge-outline-dark {
+        color: $dark !important;
+        border: 1px solid darken($dark, 20%) !important;
+        background-color: transparent !important;
+    }
+    &.badge-light {
+        color: $dark !important;
+        background-color: $light !important;
+    }
+    &.badge-outline-light {
+        border: 1px solid $light !important;
+    }
+}
+
+//Alert
+@each $name,
+$value in $colors {
+    .alert-#{$name} {
+        background-color: lighten($value, 5%);
+        color: $dark;
+        border-color: $value;
+        .alert-link {
+            color: darken($value, 30%);
+        }
+    }
+    .alert-outline-#{$name} {
+        background-color: $white;
+        color: $value;
+        border-color: $value;
+    }
+}
+.alert {
+    &.alert-dark {
+        background-color: $dark;
+        color: $light;
+        border-color: $gray-100;
+    }
+    &.alert-light {
+        background-color: $light;
+        color: $dark;
+        border-color: $light;
+    }
+}
+
+
+//Breadcrumb
+.breadcrumb {
+    .breadcrumb-item {
+        a {
+            color: $dark;
+        }
+        &:after {
+            color: $dark; 
+        }     
+    }
+}
+
+//Pagination
+.pagination {   
+    .page-item {
+        .page-link {
+            color: $dark;
+            border: 1px solid $gray-800;
+            background: $white; 
+            &:hover {
+                color: $dark !important;
+            }
+        }
+    }              
+    .active a {
+        color: $dark;
+    }
+}
+//Accordion
+.accordion {
+    .accordion-item {
+        box-shadow: $shadow;
+        .accordion-button {
+            text-align: right !important;
+            &.collapsed {
+                background-color: $white;
+                color: $dark !important;
+                &:before {
+                    color: $dark !important;
+                }
+            }
+        }
+    }
+}
+
+//Nav
+.nav-pills {
+    background: lighten($white, 10%);
+    .nav-link{
+        color: $dark !important;
+        &.nav-link-alt {
+            color: $dark !important;
+            &:hover {
+                background: none !important;
+            }
+            &.active {
+                background: $white !important;
+            }
+        }
+        &:hover {
+            background: lighten($white, 8%);
+        }
+        &.active {
+            color: $dark !important;
+            .tab-para {
+                color: rgba($dark, 0.5) !important;
+            }
+        }
+    }
+}
+
+//Processbar
+.progress-box {
+    .progress {
+        background: $gray-800;
+    }
+}
+
+//blockquote
+.blockquote {
+    border-left: 3px solid $gray-300;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.blockquote-wrapper {
+    .blockquote {
+        &:before {
+            border: 6px solid $white;
+        }
+    }
+}
+//Form
+.form-control {
+    background: $white;
+    border: 1px solid $gray-800;
+    color: $gray-300 !important;
+    &:focus {
+        background: $white;
+    }
+    &::placeholder{
+        color: $gray-300;
+    }
+}
+
+.form-check-input {
+    background-color: $white;
+    border-color: $gray-800;
+}
+
+
+@media (min-width:992px) {
+    .filter-border {
+        &:before {
+            border-right: 1px solid $gray-800;
+        }
+    }
+}
+.choices__inner {
+    background: $light !important;
+}
+
+
+.choices__list--dropdown,
+.choices[data-type*=select-one] .choices__input {
+    background: $white;
+    border-color: $gray-100 !important;
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background: $light;
+    color: $dark;
+}
+
+.choices__list--dropdown .choices__item--selectable {
+    color: $muted;
+}
+
+//Datepicker
+.qs-datepicker-container {
+    background-color: $white;
+    border-color: $gray-800;
+    .qs-controls {
+        background-color: $light;
+        .qs-month-year {
+            color: $dark;
+        }
+    }
+    .qs-squares {
+        .qs-square {
+            &:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover,
+            &.qs-current {
+                color: $dark;
+            }
+            color: $dark;
+        }
+        .qs-day {
+            color: $dark;
+        }
+    }
+}
+
+
+//Subscribe form
+.subcribe-form {
+    input {
+        background-color: rgba($white, 0.8);
+        color: $gray-200 !important;
+        &::placeholder{
+            color: $gray-200;
+        }
+    }
+}
+
+//Table
+.table-responsive {
+    .table {
+        color: $dark;
+        td,
+        th {
+            border-top-color: $gray-800;
+        }
+        thead th {
+            border-bottom-color: $gray-800;
+        }
+    } 
+    .table-center {
+        tbody {
+            tr {
+                &:hover {
+                    color: $dark;
+                    background-color: $light;
+                }
+            }
+        }
+    }
+}
+.table {
+    border-color: $gray-800;
+}
+
+.table-responsive .table-center tbody tr:hover {
+    color: #fff;
+    background-color: #253649;
+}
+
+//Modal
+.modal-content {
+    background: $white;
+    .modal-header,
+    .modal-footer {
+        border-color: $gray-800;
+    }
+}
+.modal-open {
+    padding-right: 0 !important;
+}
+
+// Loader
+#preloader {
+    background-image: linear-gradient(45deg, $white, $white);
+}
+
+//Social icons
+.social-icon,
+.social-icon .social {
+    li {
+        a {
+            color: $gray-300;
+            border: 1px solid $gray-300;
+            &:hover {
+                color: $dark !important;
+            }
+        }
+    }
+}
+.social-icon {
+    &.foot-social-icon {
+        li {
+            a {
+                color: $gray-300;
+                border-color: lighten($footer, 2%);
+            }
+        }
+    }
+    &.social {
+        li {
+            a {
+                color: $muted;
+                border: 1px solid $muted;
+                &:hover {
+                    color: $dark !important;
+                }
+            }
+        }
+    }
+    
+
+    &.tagline-social {
+        li {
+            a {
+                i {
+                    color: $muted;
+                    &:hover {
+                        color: $primary !important;
+                    }
+                }
+                &:hover {
+                    background: transparent;
+                }
+            }
+        }
+        &.social-white {
+            li {
+                a {
+                    i {
+                        color: $white;
+                    }
+                }
+            }
+        }
+        &.social-dark {
+            li {
+                a {
+                    i {
+                        color: $dark;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//back to top
+.back-to-top {
+    background: $primary;
+    color: $dark;
+}
+
+//Blog
+.blog {
+    @each $name,
+    $value in $colors {
+        &.blog-#{$name} {
+            .title,
+            .link {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+            .link {
+                color: $value !important;
+            }
+        }
+    }
+}
+.blog {
+    .image {
+        .read-more {
+            a {
+                &:hover {
+                    color: $dark !important;
+                }
+            }
+        }
+    }
+}
+
+
+//Sidebar
+.sidebar {
+    .widget {
+        .widget-search, .searchform { 
+            input[type="text"] {
+                background: $white;
+                color: $gray-300;
+                
+                &::placeholder{
+                    color: $gray-300 !important;
+                }
+            }
+        }
+        .tagcloud {
+            > a {
+                background: $light;
+                color: $dark;
+                &:hover {
+                    color: $dark;
+                }
+            }
+        }
+    }
+}
+
+//
+// _features.scss
+//
+
+.features {
+    @each $name,
+    $value in $colors {
+        &.feature-#{$name} {
+            .title {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+            .icon {
+                color: $value !important;
+            }
+            .link {
+                color: $value !important;
+            }
+            .fea-icon {
+                background-color: $value;
+                &.bg-soft {
+                    background-color: rgba($value, 0.1);
+                    color: $value;
+                }
+            }
+            &.feature-bg {
+                &:hover {
+                    background: $value;
+                    .fea-icon {
+                        color: $value !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.features {
+    &.feature-bg {
+        &:hover {
+            .title {
+                color: $dark !important;
+            }
+            .para {
+                color: rgba($dark, 0.5) !important;
+            }
+            .fea-icon {
+                background: $dark !important;
+            }
+        }
+    }
+    &.features-classic {
+        &:hover {
+            box-shadow: $shadow-lg !important;
+        }
+    }
+
+    &.features-modern {
+        .content {
+            border: 1px dashed $white;
+        }
+        &:hover {
+            .overlay {
+                background-color: rgba($dark, 0.7);
+            }
+        }
+    }
+}
+
+.process-bar {
+    &:after {
+        display: block;
+        width: 50%;
+        position: absolute;
+        content: '';
+        border-width: 0 0 1px 0;
+        border: 1px $gray-200 dashed;
+        top: 15%;
+        left: 75%;
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
+}
+
+.app-feature-shape {
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+        width: 35rem;
+        height: 35rem;
+        border-radius: 50%;
+        background: $light;
+        box-shadow: $shadow;
+
+        @media (max-width: 768px) {
+            width: 25rem;
+            height: 25rem;
+        }
+    }
+}
+
+//countdown
+#countdown {
+    .count-down {
+        color: $dark !important;
+    }
+}
+
+//token-sale
+#token-sale {
+    .count-down {
+        color: $dark !important;
+    }
+}
+
+//maintenance
+#clock {
+    color: $dark;
+}
+
+//CTA
+.play-btn {
+    color: $white;
+}
+
+//Chat
+.chat {
+    .chat-list {
+        &:hover,
+        &.active,
+        &:focus {
+            background: $light !important;
+            box-shadow: $shadow;
+        }
+    }
+    
+    &.chat-person {
+        .chat-msg {
+            .msg {
+                border: 1px solid $gray-800;
+            }
+        }
+    }
+}
+
+// _smiple-bar.scss
+.simplebar-track {
+    &.simplebar-vertical {
+        .simplebar-scrollbar {
+            &:before {
+                background: $gray-800 !important;
+            }
+        }
+    }
+}
+
+//Footer
+//
+// _footer.scss
+//
+.footer {
+    color: $gray-300;
+    .footer-head {
+        color: $dark;
+    }
+    
+    .text-foot {
+        color: $gray-300;
+    }
+
+    .footer-subscribe, .foot-subscribe {
+        .form-control {
+            background-color: lighten($footer, 5%);
+            border: 1px solid lighten($footer, 5%);
+            color: $dark !important;
+        }
+        input {
+            &::placeholder{
+                color: $gray-300;
+            }
+        }
+        &.foot-white {
+            .form-control {
+                color: $gray-300;
+            }
+        }
+    }
+    
+    .footer-list {
+        li {
+            a {
+                &:hover {
+                    color: lighten($gray-300, 20%);
+                }
+            }   
+        }
+    }
+
+    .footer-border,
+    .footer-bar {
+        border-top: 1px solid lighten($footer, 3%);
+    }
+    .footer-border-bottom {
+        border-bottom: 1px solid lighten($footer, 3%);
+    }
+    .border {
+        border-color: lighten($footer, 3%) !important;
+    }
+
+    &.footer-light {
+        background-color: $dark;
+        .footer-head {
+            color: $dark;
+        }
+        .text-foot {
+            color: $muted;
+        }
+        .footer-subscribe, .foot-subscribe {
+            .form-control {
+                background-color: $dark;
+                border: 1px solid $gray-800;
+                color: $dark;
+            }
+            &.foot-white {
+                .form-control {
+                    color: $gray-300;
+                }
+            }
+            input{
+                &::placeholder{
+                    color: $gray-300;
+                }
+            }
+        }
+        .footer-list {
+            li {
+                a {
+                    &:hover {
+                        color: darken($gray-300, 20%);
+                    }
+                }   
+            }
+        }
+        .footer-border,
+        .footer-bar {
+            border-top: 1px solid $gray-800;
+        }
+        
+        .footer-border-bottom {
+            border-bottom: 1px solid $gray-800;
+        }
+        .border {
+            border-color: $gray-800 !important;
+        }
+        .social-icon {
+            &.foot-social-icon {
+                li {
+                    a {
+                        color: $gray-300;
+                        border-color: $gray-800;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Home(Hero section)
+@mixin home-common {
+    background-size: cover;
+    align-self: center;
+    position: relative;
+    background-position: center center;
+}
+
+//job
+.bg-job-hero {
+    .bg-overlay{
+        background-image: url("../images/curve-shape-dark.png") !important;
+    }
+}
+
+//personal
+@media (min-width: 769px) {
+    .personal-hero {
+        .personal-hero-para {
+            background-color: rgba($white, 0.5);
+        }
+    }
+}
+
+//studio
+.studio-wrapper {
+    &:before {
+        background-color: $white;
+    }
+}
+
+.flex-control-paging li a{
+    background: $white;
+}
+.bg-animation-left {
+    &.dark-left {
+        &:after {
+            background: rgba($white, 0.6) !important;
+        }
+    }
+}
+
+//Price 
+.ribbon {
+    span {
+        color: $dark;
+    }
+}
+
+//Apexcharts
+.apexcharts-tooltip {
+    background: $white !important;
+    color: $dark;
+}
+
+//Team
+.team {
+    @each $name,
+    $value in $colors {
+        &.team-#{$name} {
+            .btn {
+                color: $dark !important;
+                &:hover, &:focus, &:active, &.active, &.focus{
+                    color: $dark !important;
+                }
+            }
+        }
+    }
+}
+
+//Testi
+.tns-nav {
+    button {
+        border: 1px solid $white;
+    }
+}
+
+.customer-testi {
+    cursor: e-resize;
+    .content {
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(50%);
+            box-sizing: border-box;
+            border: 8px solid $dark;
+            border-color: transparent $white $white transparent;
+            transform-origin: 0 0;
+            transform: rotate(45deg);
+            box-shadow: 2px 2px 2px -1px rgba($dark, 0.15);
+        }
+    }
+}
+
+//Tns control
+.tns-controls {
+    button[data-controls="prev"],
+    button[data-controls="next"] {
+        background: $white;
+        color: $dark;
+        box-shadow: $shadow-lg;
+        &:hover {
+            color: $dark;
+        }
+    }
+}
+
+//Work / Portfolio
+.container-filter {
+    li {
+        color: $muted !important;
+        &.active,
+        &:hover {
+            color: $dark !important;
+        }
+    }
+}
+
+
+.portfolio {
+    @each $name,
+    $value in $colors {
+        &.portfolio-#{$name} {
+            .title,
+            .lightbox-icon a {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+
+            .btn-icon {
+                background-color: $value !important;
+            }
+        }
+    }
+}
+
+//Portfolio post
+.portfolio {
+    &.portfolio-classic {
+        .pop-icon {
+            .btn-icon {
+                color: $dark;
+                border: 0;
+            }
+        }
+    }
+    &.portfolio-modern {
+        .content {
+            background-color: $white;
+        }
+    }
+    &:hover {
+        .overlay {
+            background-color: rgba($white, 0.8);
+        }
+    }
+}
+
+//Resume
+.timeline-page {
+    &:after {
+        border-right: 2px dashed $gray-200 !important;
+    }
+    .timeline-item {
+        .date-label-left, .duration-right {
+            &:after {
+                background-color: $primary;
+            }
+
+            &:before {
+                border: 2px dashed $gray-200;
+                background-color: $white;
+            }
+        }
+    }
+}

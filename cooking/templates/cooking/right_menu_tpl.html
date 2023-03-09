@@ -1,47 +1,47 @@
 {% load static %}
-
-<div class="sidebar-box ftco-animate">
-    <h3 class="sidebar-heading">Категории</h3>
-    <ul class="categories">
+<div class="widget mt-4 pt-2">
+    <h6 class="widget-title fw-bold font-weight-bold pt-2 pb-2 bg-light rounded text-center">Категории</h6>
+    <ul class="list-unstyled mt-4 mb-0 catagories">
         {% for item in categories %}
             {% if item.recipes.exists %}
-                <li><a href="{{ item.get_absolute_url }}">{{ item.title }}<span>({{ item.cnt }})</span></a></li>
+                <li class="d-flex justify-content-between"><a class="title text-dark"
+                                                              href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                    <span>{{ item.cnt }}</span>
+                </li>
             {% endif %}
         {% endfor %}
     </ul>
 </div>
 
-<div class="sidebar-box ftco-animate">
-    <h3 class="sidebar-heading">Облако тэгов</h3>
-    <ul class="tagcloud">
+<div class="widget mt-4 pt-2 text-center">
+    <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded fw-bold">Облако тегов</h6>
+    <div class="tagcloud mt-4">
         {% for item in tags %}
             {% if item.recipes.exists %}
-            <a href="{{ item.get_absolute_url }}" class="tag-cloud-link">{{ item.title }}</a>
+                <a href="{{ item.get_absolute_url }}" class="rounded text-dark">{{ item.title }}</a>
             {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 </div>
 
-<div class="sidebar-box ftco-animate">
-    <h3 class="sidebar-heading">Популярные рецепты</h3>
-    {% for item in popular %}
-        <div class="block-21 mb-4 d-flex">
-            {% if item.photo %}
-                <a class="blog-img mr-4" style="background-image: url({{ item.photo.url }});"></a>
-            {% else %}
-                <a class="blog-img mr-4" style="background-image: url({% static 'images/plug.jpg' %});"></a>
-
-            {% endif %}
-            <div class="text">
-
-                <h3 class="heading"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
-                <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> {{ item.created_at }}</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                    <div><span class="icon-eye"></span> {{ item.views }}</div>
+<div class="widget mt-4 pt-2">
+    <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded text-center fw-bold">Популярные рецепты</h6>
+    <div class="mt-4">
+        {% for item in popular %}
+            <div class="d-flex align-items-center mt-3">
+                {% if item.photo %}
+                <img src="{{ item.photo.url }}" class="avatar avatar-small rounded" style="width: auto;"
+                     alt="">
+                {% else %}
+                 <img src="{% static 'images/plug.jpg' %}" class="avatar avatar-small rounded" style="width: auto;"
+                     alt="">
+                {% endif %}
+                <div class="flex-1 ms-3">
+                    <a href="{{ item.get_absolute_url }}" class="d-block title text-dark">{{ item.title }}</a>
+                    <span class="text-muted">{{ item.created_at }}</span>
                 </div>
-
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
+

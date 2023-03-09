@@ -1,0 +1,82 @@
+//
+// _team.scss
+//
+.team {
+    @each $name,
+    $value in $colors {
+        &.team-#{$name} {
+            .name {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+            .team-image {
+                .overlay {
+                    background: rgba($value, 0.8);
+                }
+            }
+            .team-social {
+                li {
+                    a {
+                        &:hover {
+                            background-color: $value;
+                            border-color: $value !important;
+                            .fea-social {
+                                fill: $value;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.team {
+    .team-content,
+    .team-social {
+        position: absolute;
+        transition: all 0.5s ease;
+        opacity: 0;
+    }
+    .team-content {
+        bottom: 50px;
+        left: 16px;
+    }
+    .team-social {
+        top: 15px;
+        right: -50px;
+    }
+    &.team-two {
+        .team-image {
+            .overlay {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                transition: all 0.5s ease;
+                opacity: 0;
+            }
+        }
+    }
+    &:hover {
+        .team-content,
+        .team-social {
+            opacity: 1;
+        }
+        .team-social {
+            right: 15px;
+        }
+        .team-content {
+            bottom: 12px;
+        }
+        &.team-two {
+            .team-image {
+                .overlay {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

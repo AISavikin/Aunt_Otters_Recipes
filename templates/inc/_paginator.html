@@ -1,23 +1,15 @@
-{% if page_obj.has_other_pages %}
-    <div class="row">
-        <div class="col">
-            <div class="block-27">
-                <ul>
-                    {% if page_obj.has_previous %}
-                        <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
-                    {% endif %}
-                    {% for p in page_obj.paginator.page_range %}
-                        {% if p == page_obj.number %}
-                            <li class="active"><a href="?{{ s }}page={{ p }}">{{ p }}</a></li>
-                        {% else %}
-                            <li><a href="?{{ s }}page={{ p }}">{{ p }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        <li><a href="?{{ s }}page={{ page_obj.next_page_number }}">></a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
-{% endif %}
+<ul class="pagination justify-content-center mb-0">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true"><i class="mdi mdi-chevron-left mdi-18px"></i></span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true"><i class="mdi mdi-chevron-right mdi-18px"></i></span>
+                    </a>
+                </li>
+            </ul>

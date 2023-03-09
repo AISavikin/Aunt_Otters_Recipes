@@ -1,0 +1,151 @@
+//
+// _blog.scss
+//
+.blog {
+    @each $name,
+    $value in $colors {
+        &.blog-#{$name} {
+            .title,
+            .link {
+                &:hover {
+                    color: $value !important;
+                }
+            }
+        }
+    }
+}
+
+//blog-image
+.blog {
+    transition: all 0.5s ease;
+    &.blog-image {
+        .content {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            transition: all 0.5s ease;
+            .author {
+                opacity: 0;
+                transition: all 0.5s ease;
+            }
+        }
+        &:hover {
+            .content {
+                bottom: 24px;
+                .author {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .image {
+        .blog-tag {
+            position: absolute;
+            bottom: -30px;
+            left: 24px;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+    }
+    &:hover {
+        box-shadow: $shadow-lg !important;
+        .image {
+            .blog-tag {
+                bottom: 20px;
+                opacity: 1;
+            }
+        }
+    }
+
+    &.causes {
+        .causes-content {
+            position: relative;
+            margin: -15px 15px 0;
+        }
+        &:hover {
+            box-shadow: none !important;
+        }
+    }
+}
+
+
+
+//Sidebar
+.sidebar {
+    .widget {
+        .title {
+            &:hover {
+                color: $primary !important;
+            }
+        }
+        .widget-search {
+            form {
+                position: relative;
+            }
+        }
+        .widget-search, .searchform { 
+            input[type="text"] {
+                box-shadow: none;
+                padding: 12px 15px;
+                height: 45px;
+                font-size: 14px;
+                display: block;
+                width: 100%;
+                outline: none !important;
+                padding-right: 45px;
+            }
+            input[type="submit"] {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                opacity: 0;
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .widget-search {
+            .searchform:after {
+                content: "\F0349";
+                position: absolute;
+                font-family: "Material Design Icons";
+                right: 16px;
+                top: 15px;
+                font-size: 20px;
+                line-height: 20px;
+                pointer-events: none;
+            }
+        }
+        .widget-title {
+            font-weight: 500;
+        }
+        .tagcloud {
+            > a {
+                background: $gray-100;
+                display: inline-block;
+                font-size: 10px;
+                letter-spacing: 1px;
+                margin: 5px;
+                padding: 6px 10px;
+                text-transform: uppercase;
+                transition: all 0.5s ease;
+                &:hover {
+                    background: $primary;
+                    color: $white !important;
+                }
+            }
+        }
+    }
+}
+
+
+//Divider
+.divider-main {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    &.divider {
+        height: 2px;
+        width: 70%;
+        background: linear-gradient(90deg, transparent, $gray-200, transparent);
+    }
+}
