@@ -1,74 +1,72 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <title>{% block title %}Домашняя кулинарная книга{% endblock %}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <link rel="icon" href="{% static 'images/icon-otter.png' %}">
-    <link rel="stylesheet" href="{% static "css/open-iconic-bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/animate.css" %}">
-    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
-    <link rel="stylesheet" href="{% static "css/aos.css" %}">
-    <link rel="stylesheet" href="{% static "css/ionicons.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
-    <link rel="stylesheet" href="{% static "css/jquery.timepicker.css" %}">
-    <link rel="stylesheet" href="{% static "css/flaticon.css" %}">
-    <link rel="stylesheet" href="{% static "css/icomoon.css" %}">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-</head>
-<body>
-<div id="colorlib-page">
-    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-    <aside id="colorlib-aside" role="complementary" class="js-fullheight">
-        {% include 'inc/_left_side_menu.html' %}
-    </aside> <!-- END COLORLIB-ASIDE -->
-    <div id="colorlib-main">
-        <section class="ftco-section ftco-no-pt ftco-no-pb">
-            <div class="container">
-                <div class="row d-flex">
-                    {% block content %}{% endblock %}
-                    <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
-                        {% include 'inc/_right_side_menu.html' %}
+{% block content %}
+    <div class="col-lg-8 px-md-5 py-5" xmlns="http://www.w3.org/1999/html">
+        {#  Заголовок и фото, если есть   #}
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-3">{{ recipe.title }}</h1>
+                {% if recipe.photo %}
+                    <p>
+                        <img src="{{ recipe.photo.url }}" alt="" class="img-fluid">
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        {# Таблицы  #}
+        <div class="row ml-2 mr-2">
+            <div class="col-md-8">
+                {% include 'inc/_table_ingredients.html' %}
+            </div>
+            <div class="col-md-3">
+                {% include 'inc/_tables_spices.html' %}
+            </div>
+        </div>
+        {#   Кнопки    #}
+
+        <div class="row mb-3">
+            {% if request.user.is_authenticated %}
+                <div class="col-md-4 col-sm-6 mb-2 ">
+                    <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">
+                        <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+            {% if recipe.video %}
+                <div class="col-md-4 col-sm-6 mb-2 ">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseVideo"
+                            aria-expanded="false" aria-controls="collapseVideo"> Видео по рецепту
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        {# Сворацивающийся div для видео  #}
+        <div class="row">
+            {% if recipe.video %}
+                <div class="collapse col-md-12" id="collapseVideo">
+                    <iframe width="100%" height="350" src="https://www.youtube.com/embed/{{ recipe.video }}"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                </div>
+            {% endif %}
+        </div>
+        {# Основной контент #}
+        <div class="row">
+            <div class="col-12">
+                {{ recipe.content| safe }}
+            </div>
+        </div>
+        {# Облако тегов #}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tag-widget post-tag-container mt-3">
+                    <div class="tagcloud">
+                        {% for tag in recipe.tags.all %}
+                            <a href="#" class="tag-cloud-link">{{ tag }}</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-        </section>
-    </div><!-- END COLORLIB-MAIN -->
-</div><!-- END COLORLIB-PAGE -->
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen">
-    <svg class="circular" width="48px" height="48px">
-        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00"/>
-    </svg>
-</div>
-
-
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static 'js/aos.js' %}"></script>
-<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
-<script src="{% static 'js/scrollax.min.js' %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="{% static 'js/google-map.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
-
-</body>
-</html>
-
+        </div>
+    </div>
+{% endblock %}

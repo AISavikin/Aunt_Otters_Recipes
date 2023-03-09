@@ -4,160 +4,72 @@
 
 
 {% block content %}
-    <div class="row">
-        <div class="col-lg-12 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/01.jpg" class="img-fluid" alt="">
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-6">
+                <!--Закрепленный пост-->
+                {% for i in recipes|slice:"1" %}
+                <div class="row">
+                    <div class="col-lg-12 mb-4 pb-2 picture-item">
+                        <div class="card blog blog-primary shadow rounded overflow-hidden">
+                            <div class="image position-relative overflow-hidden">
+                                <img src="{{ i.photo.url }}" class="img-fluid" alt="">
 
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Corporate</a>
-                    </div>
+                                <div class="blog-tag">
+                                    <a href="{{ i.get_absolute_url }}" class="badge bg-light">Corporate</a>
+                                </div>
+                            </div>
+
+                            <div class="card-body content">
+                                <a href="{{ i.get_absolute_url }}" class="h5 title text-dark d-block mb-0">{{i.title}}</a>
+                                <p class="text-muted mt-2 mb-2">{{ i.description }}</p>
+                                <a href="{{ i.get_absolute_url }}" class="link text-dark">Read More <i
+                                        class="uil uil-arrow-right align-middle"></i></a>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    {% endfor %}
                 </div>
+                <div class="row" id="grid">
+                    {% for item in recipes|slice:'1:' %}
+                    <div class="col-lg-6 mb-4 pb-2 picture-item">
+                        <div class="card blog blog-primary shadow rounded overflow-hidden">
+                            <div class="image position-relative overflow-hidden">
+                                {% if item.photo %}
+                                <img src='{{ item.photo.url }}' class="img-fluid" alt="">
+                                {% else %}
+                                <img src='/static/images/plug.png' class="img-fluid" alt="">
 
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">Building Your
-                        Corporate Identity from Starty</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
+                                {% endif %}
+                                <div class="blog-tag">
+                                    <a href="{{ pin.get_absolute_url }}" class="badge bg-dark">Branding</a>
+                                </div>
+                            </div>
+
+                            <div class="card-body content">
+                                <a href="{{ item.get_absolute_url }}" class="h5 title text-dark d-block mb-0">{{item.title}}</a>
+                                <p class="text-muted mt-2 mb-2">{{ item.description}}</p>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    {% endfor %}
+
+                </div><!--end row-->
+
+                <div class="row">
+                    <div class="col-12">
+                        {% include 'inc/_paginator.html' %}
+                    </div><!--end col-->
                 </div>
-            </div>
-        </div><!--end col-->
-    </div>
+            </div><!--end col-->
 
-    <div class="row" id="grid">
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/img01.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Branding</a>
-                    </div>
+            <div class="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="sidebar sticky-bar ms-lg-4">
+                    {% include 'inc/_sidebar.html' %}
                 </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">The Dark Side of
-                        Overnight Success</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/03.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Technology</a>
-                    </div>
-                </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">The Right Hand
-                        of Business IT World</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/img02.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Personal</a>
-                    </div>
-                </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">How to Create
-                        Your Own Viral Moments</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/img03.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Business</a>
-                    </div>
-                </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">How to Write a
-                        Business Plan For Any Business</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/06.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Marketing</a>
-                    </div>
-                </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">Seeing the
-                        Customer Journey More Clearly</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-lg-6 mb-4 pb-2 picture-item">
-            <div class="card blog blog-primary shadow rounded overflow-hidden">
-                <div class="image position-relative overflow-hidden">
-                    <img src="images/blog/07.jpg" class="img-fluid" alt="">
-
-                    <div class="blog-tag">
-                        <a href="javascript:void(0)" class="badge bg-light">Production</a>
-                    </div>
-                </div>
-
-                <div class="card-body content">
-                    <a href="blog-detail-five.html" class="h5 title text-dark d-block mb-0">The Signs of a
-                        Highly Giftable Product</a>
-                    <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem Ipsum', in
-                        the 16th century.</p>
-                    <a href="blog-detail-five.html" class="link text-dark">Read More <i
-                            class="uil uil-arrow-right align-middle"></i></a>
-                </div>
-            </div>
-        </div><!--end col-->
-    </div><!--end row-->
-
-    <div class="row">
-        <div class="col-12">
-            {% block paginator %} {% endblock %}
-        </div><!--end col-->
-    </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--en section-->
 {% endblock %}

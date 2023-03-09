@@ -1,78 +1,152 @@
-{% extends 'base_old.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
-
 {% block content %}
-    <div class="col-lg-8 px-md-5 py-5" xmlns="http://www.w3.org/1999/html">
-        {#  Заголовок и фото, если есть   #}
-        <div class="row">
-            <div class="col-12">
-                <h1 class="mb-3">{{ recipe.title }}</h1>
-                {% if recipe.photo %}
-                    <p>
-                        <img src="{{ recipe.photo.url }}" alt="" class="img-fluid">
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-        {# Таблицы  #}
-        <div class="row ml-2 mr-2">
-            <div class="col-md-8">
-                {% include 'inc/_table_ingredients.html' %}
-            </div>
-            <div class="col-md-3">
-                {% include 'inc/_tables_spices.html' %}
-            </div>
-        </div>
-        {#   Кнопки    #}
 
-        <div class="row mb-3">
-            {% if request.user.is_authenticated %}
-                <div class="col-md-4 col-sm-6 mb-2 ">
-                    <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">
-                        <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент
-                        </button>
-                    </a>
-                </div>
-            {% endif %}
-            {% if recipe.video %}
-                <div class="col-md-4 col-sm-6 mb-2 ">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseVideo"
-                            aria-expanded="false" aria-controls="collapseVideo"> Видео по рецепту
-                    </button>
-                </div>
-            {% endif %}
-        </div>
-        {# Сворацивающийся div для видео  #}
-        <div class="row">
-            {% if recipe.video %}
-                <div class="collapse col-md-12" id="collapseVideo">
-                    <iframe width="100%" height="350" src="https://www.youtube.com/embed/{{ recipe.video }}"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
-                </div>
-            {% endif %}
-        </div>
-        {# Основной контент #}
-        <div class="row">
-            <div class="col-12">
-                {{ recipe.content| safe }}
-            </div>
-        </div>
-        {# Облако тегов #}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tag-widget post-tag-container mt-3">
-                    <div class="tagcloud">
-                        {% for tag in recipe.tags.all %}
-                            <a href="#" class="tag-cloud-link">{{ tag }}</a>
-                        {% endfor %}
-                    </div>
+<section class="bg-half-170" style="background: url({{ recipe.photo.url }}) center;">
+    <div class="bg-overlay bg-gradient-overlay"></div>
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-10">
+                <div class="title-heading text-center">
+                    <h4 class="heading text-white title-dark">{{recipe.title}}</h4>
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-3"><i class="uil uil-user text-white h5 mb-0"></i><a
+                                href="javascript:void(0)" class="text-white-50 h6"> Mr. Donald Ruffy</a></li>
+                        <li class="list-inline-item text-white-50 h6 me-3"><i
+                                class="uil uil-calender h5 text-white title-dark"></i> 15th April 2021
+                        </li>
+                        <li class="list-inline-item text-white-50 h6"><i
+                                class="uil uil-clock h5 text-white title-dark"></i> 8 min read
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="features-absolute shadow bg-white p-4 rounded">
+                    <div class="row">
+                        <div class="col-12">
+                            {{recipe.content| safe}}
+
+                            <a href="javascript:void(0)" class="badge bg-primary">Tech</a>
+                            <a href="javascript:void(0)" class="badge bg-primary">Technology</a>
+                            <a href="javascript:void(0)" class="badge bg-primary">Future</a>
+                            <div class="card mt-4 rounded overflow-hidden">
+                                <img src="images/blog/single05.jpg" class="img-fluid rounded shadow" alt="">
+
+                                <div class="position-absolute bottom-0 start-50 translate-middle-x text-center mb-3 ms-4">
+                                    <p class="fst-italic text-white title-dark mb-0">The man who comes back through the
+                                        door in the wall will never be quite the same as the man who went out.</p>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div>
+
+                <div class="card shadow rounded border-0 mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">Related News :</h5>
+
+                        <div class="row mt-2">
+                            <div class="col-lg-6 mt-4 pt-2">
+                                <div class="card blog blog-primary shadow rounded overflow-hidden">
+                                    <div class="image position-relative overflow-hidden">
+                                        <img src="images/blog/02.jpg" class="img-fluid" alt="">
+
+                                        <div class="blog-tag">
+                                            <a href="javascript:void(0)" class="badge bg-light">Branding</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body content">
+                                        <a href="blog-detail-three.html" class="h5 title text-dark d-block mb-0">The
+                                            Dark Side of Overnight Success</a>
+                                        <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem
+                                            Ipsum', in the 16th century.</p>
+                                        <a href="blog-detail-three.html" class="link text-dark">Read More <i
+                                                class="uil uil-arrow-right align-middle"></i></a>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-6 mt-4 pt-2">
+                                <div class="card blog blog-primary shadow rounded overflow-hidden">
+                                    <div class="image position-relative overflow-hidden">
+                                        <img src="images/blog/03.jpg" class="img-fluid" alt="">
+
+                                        <div class="blog-tag">
+                                            <a href="javascript:void(0)" class="badge bg-light">Technology</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body content">
+                                        <a href="blog-detail-three.html" class="h5 title text-dark d-block mb-0">The
+                                            Right Hand of Business IT World</a>
+                                        <p class="text-muted mt-2 mb-2">The most well-known dummy text is the 'Lorem
+                                            Ipsum', in the 16th century.</p>
+                                        <a href="blog-detail-three.html" class="link text-dark">Read More <i
+                                                class="uil uil-arrow-right align-middle"></i></a>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-12 mt-5">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="blog-detail-three.html" class="text-dark align-items-center">
+                                        <span class="pro-icons"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-left fea icon-sm align-middle"><line
+                                                x1="19" y1="12" x2="5" y2="12"></line><polyline
+                                                points="12 19 5 12 12 5"></polyline></svg></span>
+                                        <span class="text-muted d-none d-lg-inline-block">Web Development</span>
+                                        <img src="images/blog/06.jpg" class="avatar avatar-small rounded shadow ms-2"
+                                             style="height:auto;" alt="">
+                                    </a>
+
+                                    <a href="index.html" class="btn btn-lg btn-pills btn-icon btn-soft-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-home icons">
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                        </svg>
+                                    </a>
+
+                                    <a href="blog-detail-three.html" class="text-dark align-items-center">
+                                        <img src="images/blog/07.jpg" class="avatar avatar-small rounded shadow me-2"
+                                             style="height:auto;" alt="">
+                                        <span class="text-muted d-none d-lg-inline-block">Web Designer</span>
+                                        <span class="pro-icons"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-arrow-right fea icon-sm align-middle"><line
+                                                x1="5" y1="12" x2="19" y2="12"></line><polyline
+                                                points="12 5 19 12 12 19"></polyline></svg></span>
+                                    </a>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section>
 {% endblock %}
+
+
+
 

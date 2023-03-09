@@ -9,12 +9,14 @@ from .forms import AddIngredientForm, CreateRecipeForm
 class Home(ListView):
     model = Recipe
     template_name = 'cooking/index.html'
-    paginate_by = 10
+    paginate_by = 8
     context_object_name = 'recipes'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
+        context['pin'] = Recipe.objects.get(pk=14)
+
         return context
 
 

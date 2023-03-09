@@ -1,8 +1,8 @@
 {% load static %}
 
 <!-- Logo container-->
-<a class="logo mt-2 mb-2" href="{% url 'home' %}">
-    <img src="{% static "images/logo-otter.png" %}" class="logo-light-mode" width="400" style="display: none;" alt="">
+<a class="logo mt-2 mb-2  mx-3" href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" class="logo-light-mode" width="70" alt="">
 
 </a>
 <!-- End Logo container-->
@@ -29,9 +29,8 @@
             </button>
             <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-4 py-0"
                  style="width: 300px;">
-                <form class="p-4">
-                    <input type="text" id="text" name="name" class="form-control border bg-white"
-                           placeholder="Поиск...">
+                <form class="p-4" action="/search/" method="get">
+                    <input type="text" class="form-control border bg-white" placeholder="Поиск по сайту" name="s">
                 </form>
             </div>
         </div>
@@ -41,7 +40,7 @@
 <div id="navigation">
     <!-- Navigation Menu-->
     <ul class="navigation-menu nav-right">
-        <h2 class="mt-2">Рецепты тётушки выдры</h2>
+        <h2 class="mt-2 ">Рецепты тётушки выдры</h2>
 
         <li class="has-submenu parent-parent-menu-item">
             <a href="javascript:void(0)">Категории</a><span class="menu-arrow"></span>
@@ -54,7 +53,7 @@
         </li>
 
 
-        <li><a href="page-contact.html" class="sub-menu-item">Админка</a></li>
+        <li><a href="/admin" class="sub-menu-item">Админка</a></li>
         <li><a href="page-contact.html" class="sub-menu-item">Добавить рецепт</a></li>
     </ul>
 </div><!--end navigation-->
