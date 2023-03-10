@@ -56,9 +56,22 @@ class IngredientForRecipeAdmin(admin.ModelAdmin):
 class SpiceAdmin(admin.ModelAdmin):
     pass
 
+class StepAdmin(admin.ModelAdmin):
+    list_display = ('recipe', 'num', 'content')
+
+class ImageStepAdmin(admin.ModelAdmin):
+    list_display = ('get_recipe', 'get_step')
+
+    def get_step(self, obj):
+        return obj.step.num
+
+    def get_recipe(self, obj):
+        return obj.step.recipe.title
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(IngredientForRecipe, IngredientForRecipeAdmin)
 admin.site.register(Spice, SpiceAdmin)
+admin.site.register(Step, StepAdmin)
+admin.site.register(ImageStep, ImageStepAdmin)

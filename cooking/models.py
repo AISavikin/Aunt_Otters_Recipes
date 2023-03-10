@@ -71,8 +71,8 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse('recipe', kwargs={'slug': self.slug})
-    
-    def save(self, * args, ** kwargs):
+
+    def save(self, *args, **kwargs):
         super().save()
         if self.photo:
             img = Image.open(self.photo.path)
@@ -96,3 +96,26 @@ class IngredientForRecipe(models.Model):
         ordering = ['recipe']
         verbose_name = 'Ингредиент для рецепта'
         verbose_name_plural = 'Ингредиенты для рецептов'
+
+
+class Step(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='steps', verbose_name='Рецепт')
+    content = models.TextField(blank=True, verbose_name='Контент')
+    num = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.recipe} шаг {self.num}'
+
+    class Meta:
+        ordering = ['num']
+        verbose_name = 'Шаг'
+        verbose_name_plural = 'Шаги'
+
+
+class ImageStep(models.Model):
+    step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
+    img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения')
+    img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения ')
+
+    def __str__(self):
+        return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
