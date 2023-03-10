@@ -1,21 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}Рецепты тётушки выдры{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium Bootstrap 5 Landing Page Template"/>
-    <meta name="keywords" content="Startup, Business, Multi-uses, HTML, Clean, Modern, Creative"/>
-    <meta name="author" content="Shreethemes"/>
-    <meta name="email" content="shreethemes@gmail.com"/>
-    <meta name="website" content="https://shreethemes.in"/>
-    <meta name="Version" content="v1.0.0"/>
+    <meta name="description" content="Рецепты вкусной еды опробованной лично"/>
+    <meta name="keywords" content="Рецепты, Кулинария, Блюда, Пошаговые рецепты, Домашняя кухня"/>
+    <meta name="author" content="Zhiharka"/>
+    <meta name="email" content="aisavikin@gmail.com"/>
+    <meta name="website" content="https://auntotter.pythonanywhere.com/"/>
     <!-- favicon -->
-    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" >
     <!-- Bootstrap -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static "css/tobii.min.css" %}" rel="stylesheet" type="text/css"/>
     <!-- Icons -->
     <link href="{% static "css/materialdesignicons.min.css" %}" rel="stylesheet" type="text/css"/>
     <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet">
@@ -26,28 +26,25 @@
 
 <body>
 <!-- Navbar STart -->
-<header id="topnav" class="defaultscroll sticky">
-    <div class="container">
-        {% include 'inc/_nav_bar.html' %}
-    </div><!--end container-->
-</header><!--end header-->
+{% include 'inc/_nav_bar.html' %}
 <!-- Navbar End -->
 
-{#<section class="home-slider position-relative">#}
-{#    {% include 'inc/_carousel.html' %}#}
-{#</section><!--end section-->#}
+<!-- Hero Start -->
+
+<!-- Hero End -->
 
 
-                {% block content %} {% endblock %}
+<!-- Start -->
+{% block content %}
 
+{% endblock %}
 <!-- End -->
+
 
 <!-- Footer Start -->
 
-<footer class="footer bg-footer">
-    {% block footer %} {% endblock %}
-</footer><!--end footer-->
-<!-- End -->
+<!-- Footer End -->
+
 
 <!-- Back to top -->
 
@@ -59,6 +56,7 @@
 <!-- javascript -->
 <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
 <script src="{% static "js/shuffle.min.js" %}"></script>
+
 <script src="{% static "js/feather.min.js" %}"></script>
 <!-- Main Js -->
 <script src="{% static "js/plugins.init.js" %}"></script>

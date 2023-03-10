@@ -15,7 +15,6 @@ class Home(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
-        context['pin'] = Recipe.objects.get(pk=14)
 
         return context
 
