@@ -114,8 +114,8 @@ class Step(models.Model):
 
 class ImageStep(models.Model):
     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
-    img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения', default='url')
-    img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения ', default='url')
+    img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения')
+    img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения')
 
     def __str__(self):
         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
