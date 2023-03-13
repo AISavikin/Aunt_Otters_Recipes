@@ -1,0 +1,72 @@
+<div class="sidebar sticky-bar ms-lg-4">
+    {# Таблицы  #}
+    <div class="row ml-2 mr-2">
+        <div class="col-lg-12 col-md-12 col-sm-6">
+            {% if recipe.ingredients.exists %}
+                <h3>
+                    Ингридиенты
+                </h3>
+                {% for ingredient in recipe.ingredients.all %}
+                    <p class="lh-1">
+                        <span class="fw-bold ">{{ ingredient }}</span> -
+                        {% if ingredient.amount == 0 %}
+                            <span class="font-italic"> По вкусу </span>
+                        {% else %}
+                            <span class="font-italic">  {{ ingredient.amount|floatformat }} {{ ingredient.unit }}</span>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row ml-2 mr-2">
+            {% if request.user.is_authenticated %}
+                <div class="col-12 mb-2 ">
+                    <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">
+                        <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-6">
+            {% if recipe.spices.exists %}
+                <h3 class="lead"> Специи </h3>
+                {% for spice in recipe.spices.all %}
+                    <p class="lh-1">
+                        <span class="fw-bold fst-italic">{{ spice }}</span>
+                    </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    {#   Кнопки    #}
+
+    {#    <div class="row mb-3">#}
+    {#        {% if request.user.is_authenticated %}#}
+    {#            <div class="col-md-4 col-sm-6 mb-2 ">#}
+    {#                <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">#}
+    {#                    <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент#}
+    {#                    </button>#}
+    {#                </a>#}
+    {#            </div>#}
+    {#        {% endif %}#}
+    {#        {% if recipe.video %}#}
+    {#            <div class="col-md-4 col-sm-6 mb-2 ">#}
+    {#                <button class="btn btn-primary" type="button" data-toggle="collapse"#}
+    {#                        data-target="#collapseVideo"#}
+    {#                        aria-expanded="false" aria-controls="collapseVideo"> Видео по рецепту#}
+    {#                </button>#}
+    {#            </div>#}
+    {#        {% endif %}#}
+    {#    </div>#}
+    {# Сворацивающийся div для видео  #}
+    {#    <div class="row">#}
+    {#        {% if recipe.video %}#}
+    {#            <div class="collapse col-md-12" id="collapseVideo">#}
+    {#                <iframe width="100%" height="350" src="https://www.youtube.com/embed/{{ recipe.video }}"#}
+    {#                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#}
+    {#                        allowfullscreen></iframe>#}
+    {#            </div>#}
+    {#        {% endif %}#}
+    {#    </div>#}
+</div><!--end col-->

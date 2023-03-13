@@ -82,7 +82,7 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ('category', 'tags')
     readonly_fields = ('views', 'created_at', 'get_photo')
     fieldsets = (
-        ('Общее', {'fields': (('title', 'slug', 'category', 'content',),), 'classes': ('collapse',),}),
+        ('Общее', {'fields': (('title', 'slug', 'category', 'content', 'video'),)}),
         ('Теги', {'fields': (('tags', 'spices'),), 'classes': ('collapse',),}),
     )
     inlines = [StepInline, IngredientsInline]

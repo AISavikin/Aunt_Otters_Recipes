@@ -21,7 +21,7 @@
 
                                 {% endif %}
                                 <div class="blog-tag">
-                                    <a href="{{ pin.get_absolute_url }}" class="badge bg-dark">{{ item.category }}</a>
+                                    <a href="{{ item.category.get_absolute_url }}" class="badge bg-dark">{{ item.category }}</a>
                                 </div>
                             </div>
 
