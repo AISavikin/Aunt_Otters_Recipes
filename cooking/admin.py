@@ -23,7 +23,7 @@ class RecipeAdminForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
 
-
+@admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     form = RecipeAdminForm
@@ -32,7 +32,7 @@ class RecipeAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     list_filter = ('category', 'tags')
     readonly_fields = ('views', 'created_at', 'get_photo')
-    # fields = ('title', 'slug', 'get_photo', 'tags', 'category', 'description')
+    fields = ['title', 'content', 'slug', ('get_photo', 'tags', 'spices'), 'category', 'description']
 
     @admin.display(description='Тэги')
     def get_tags(self, obj):
@@ -70,7 +70,7 @@ class ImageStepAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Recipe, RecipeAdmin)
+# admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(IngredientForRecipe, IngredientForRecipeAdmin)
 admin.site.register(Spice, SpiceAdmin)
 admin.site.register(Step, StepAdmin)
