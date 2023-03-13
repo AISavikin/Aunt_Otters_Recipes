@@ -3,7 +3,7 @@
 {% get_category as cats %}
 
 <header id="topnav" class="defaultscroll sticky">
-    <div class="container">
+    <div class="container" >
         <!-- Logo container-->
         <a class="logo" href="{% url 'home' %}">
             <img src="{% static 'images/logo.png' %}" class="logo-light-mode w-50 mt-2" alt="">
@@ -44,7 +44,7 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
                 <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)">Категории</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)" >Категории</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                         {% for cat in cats %}
                             {% if cat.recipes.exists %}

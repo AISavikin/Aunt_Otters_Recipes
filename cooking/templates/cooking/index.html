@@ -8,31 +8,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-6">
-                <!--Закрепленный пост-->
-                {% for i in recipes|slice:"1" %}
-                <div class="row">
-                    <div class="col-lg-12 mb-4 pb-2 picture-item">
-                        <div class="card blog blog-primary shadow rounded overflow-hidden">
-                            <div class="image position-relative overflow-hidden">
-                                <img src="{{ i.photo.url }}" class="img-fluid" alt="">
 
-                                <div class="blog-tag">
-                                    <a href="{{ i.get_absolute_url }}" class="badge bg-light">Corporate</a>
-                                </div>
-                            </div>
-
-                            <div class="card-body content">
-                                <a href="{{ i.get_absolute_url }}" class="h5 title text-dark d-block mb-0">{{i.title}}</a>
-                                <p class="text-muted mt-2 mb-2">{{ i.description }}</p>
-                                <a href="{{ i.get_absolute_url }}" class="link text-dark">Read More <i
-                                        class="uil uil-arrow-right align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                    {% endfor %}
-                </div>
                 <div class="row" id="grid">
-                    {% for item in recipes|slice:'1:' %}
+                    {% for item in recipes %}
                     <div class="col-lg-6 mb-4 pb-2 picture-item">
                         <div class="card blog blog-primary shadow rounded overflow-hidden">
                             <div class="image position-relative overflow-hidden">
@@ -43,7 +21,7 @@
 
                                 {% endif %}
                                 <div class="blog-tag">
-                                    <a href="{{ pin.get_absolute_url }}" class="badge bg-dark">Branding</a>
+                                    <a href="{{ pin.get_absolute_url }}" class="badge bg-dark">{{ item.category }}</a>
                                 </div>
                             </div>
 
