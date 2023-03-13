@@ -1,66 +1,127 @@
-{% extends 'base_old.html' %}
+{% extends 'base.html' %}
 {% block title %}
     {{ recipe }}|{{ block.super }}
 {% endblock %}
-
 {% block content %}
-    <div class="col-lg-8 px-md-5 py-5" xmlns="http://www.w3.org/1999/html">
 
-        {#   Заголовок     #}
-        <div class="row pt-md-4">
-            <div class="col-md-12">
-                <h1 class="mb-3">{{ recipe.title }}</h1>
-                <h3><a href="{{ recipe.get_absolute_url }}">Вернуться к рецепту</a></h3>
+    <section class="bg-half-170">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    {% include 'inc/_sidebar_single.html' %}
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row pt-md-4">
+                        <div class="col-md-12">
+                            <h1 class="mb-3">{{ recipe.title }}</h1>
+                            <h3><a href="{{ recipe.get_absolute_url }}">Вернуться к рецепту</a></h3>
+                        </div>
+                        <form action="{% url 'home' %}add_ingredients/{{ recipe.slug }}" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field.errors }}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="{{ form.ingredient.id_for_label }}">Ингридиент:
+                                            <span
+                                                    class="text-danger">*</span></label>
+                                        {{ form.ingredient }}
+                                        <div class="invalid-feedback">
+                                            {{ form.ingredient.errors }}
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="{{ form.amount.id_for_label }}">Количество: </label>
+                                        {{ form.amount }}
+                                        <div class="invalid-feedback">
+                                            {{ form.amount.errors }}
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="{{ form.unit.id_for_label }}">Единицы
+                                            измерения:</label>
+                                        {{ form.unit }}
+                                        <div class="invalid-feedback">
+                                            {{ form.unit.errors }}
+                                        </div>
+                                    </div>
+
+                                </div><!--end col-->
+                            </div><!--end row-->
+                            <div class="col-12">
+                                <input type="submit" id="submit" class="btn btn-primary form-control" value="Добавить">
+                            </div><!--end row-->
+                        </form>
+
+                    </div>
+
+                </div>
             </div>
         </div>
+    </section>
+{% endblock %}
 
-        {# Форма #}
-        <div class="row mb-5">
-            <div class="col">
-                <form action="{% url 'home' %}add_ingredients/{{ recipe.slug }}" method="post">
-                    {% csrf_token %}
-                    {{ form.non_field.errors }}
-                    <div class="row">
-                        <div class="col form-group">
-                            <label for="{{ form.ingredient.id_for_label }}">Ингридиент:</label>
-                            {{ form.ingredient }}
-                            <div class="invalid-feedback">
-                                {{ form.ingredient.errors }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col form-group">
-                            <label for="{{ form.amount.id_for_label }}">Количество:</label>
-                            {{ form.amount }}
-                            <div class="invalid-feedback">
-                                {{ form.amount.errors }}
-                            </div>
-                        </div>
-                        <div class="col form-group">
-                            <label for="{{ form.unit.id_for_label }}">Единицы измерения:</label>
-                            {{ form.unit }}
-                            <div class="invalid-feedback">
-                                {{ form.unit.errors }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <input type="submit" value="Добавить" class="form-control">
 
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
 
-        {# Таблица ингредиентов #}
-        <div class="row">
-            <div class="col">
-                {% include 'inc/_table_ingredients.html' %}
-            </div>
+<div class="col-lg-8 px-md-5 py-5" xmlns="http://www.w3.org/1999/html">
+
+    {#   Заголовок     #}
+    <div class="row pt-md-4">
+        <div class="col-md-12">
+            <h1 class="mb-3">{{ recipe.title }}</h1>
+            <h3><a href="{{ recipe.get_absolute_url }}">Вернуться к рецепту</a></h3>
         </div>
     </div>
 
-{% endblock %}
+    <form action="{% url 'home' %}add_ingredients/{{ recipe.slug }}" method="post">
+        {% csrf_token %}
+        {{ form.non_field.errors }}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label" for="{{ form.ingredient.id_for_label }}">Ингридиент: <span
+                            class="text-danger">*</span></label>
+                    {{ form.ingredient }}
+                    <div class="invalid-feedback">
+                        {{ form.ingredient.errors }}
+                    </div>
+                </div>
+            </div><!--end col-->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="{{ form.amount.id_for_label }}">Количество: <span
+                            class="text-danger">*</span></label>
+                    {{ form.amount }}
+                    <div class="invalid-feedback">
+                        {{ form.amount.errors }}
+                    </div>
+                </div>
+            </div><!--end col-->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="{{ form.unit.id_for_label }}">Единицы измерения:</label>
+                    {{ form.unit }}
+                    <div class="invalid-feedback">
+                        {{ form.unit.errors }}
+                    </div>
+                </div>
+
+            </div><!--end col-->
+        </div><!--end row-->
+        <div class="col-12">
+            <input type="submit" id="submit" class="btn btn-primary form-control" value="Добавить">
+        </div><!--end row-->
+    </form>
+
+    {# Таблица ингредиентов #}
+    <div class="row">
+        <div class="col">
+            {% include 'inc/_table_ingredients.html' %}
+        </div>
+    </div>
+</div>
+

@@ -11,7 +11,7 @@ class CreateRecipeForm(forms.ModelForm):
     class Meta:
 
         model = Recipe
-        fields = ['title', 'description', 'content', 'slug', 'category', 'tags']
+        fields = ['title', 'description', 'slug', 'category', 'tags']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),

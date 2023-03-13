@@ -77,16 +77,16 @@ class StepInline(admin.TabularInline):
 class RecipeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_display_links = ('title',)
-    list_display = ('id', 'get_photo', 'title', 'category', 'get_tags', 'views', 'created_at')
+    list_display = ('id', 'get_photo', 'title', 'category', 'get_tags', 'views')
     search_fields = ('title',)
     list_filter = ('category', 'tags')
-    readonly_fields = ('views', 'created_at', 'get_photo')
+    readonly_fields = ('views', 'get_photo')
     fieldsets = (
-        ('Общее', {'fields': (('title', 'slug', 'category', 'content', 'video'),)}),
+        ('Общее', {'fields': (('title', 'slug', 'category', 'description', 'video'),)}),
         ('Теги', {'fields': (('tags', 'spices'),), 'classes': ('collapse',),}),
     )
     inlines = [StepInline, IngredientsInline]
-
+    save_on_top = True
     @admin.display(description='Тэги')
     def get_tags(self, obj):
         return [i.title for i in obj.tags.all()]
@@ -96,10 +96,9 @@ class RecipeAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="50">')
         return '-'
 
-
+admin.site.register(ImageStep, ImageStepAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(IngredientForRecipe, IngredientForRecipeAdmin)
 admin.site.register(Spice)
 admin.site.register(Step, StepAdmin)
-admin.site.register(ImageStep, ImageStepAdmin)

@@ -50,12 +50,10 @@ class Spice(models.Model):
 class Recipe(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
-    content = models.TextField(blank=True, verbose_name='Контент')
     date_added = models.DateField(auto_now_add=True)
     photo = models.ImageField(upload_to='photo/%Y/%m', blank=True, verbose_name='Фото')
     views = models.IntegerField(default=0, verbose_name='Кол-во просмотров')
     slug = models.SlugField(max_length=50, unique=True, verbose_name="Url")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='recipes', verbose_name='Категория')
     tags = models.ManyToManyField(Tag, blank=True, related_name='recipes', verbose_name='Тэг')
     spices = models.ManyToManyField(Spice, blank=True)
@@ -64,7 +62,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        ordering = ['-created_at']
+        ordering = ['-date_added']
 
     def __str__(self):
         return self.title
