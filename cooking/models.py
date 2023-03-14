@@ -45,13 +45,16 @@ class Spice(models.Model):
 
     def __str__(self):
         return self.title
-
+def recipe_step_directory_path(instance, filename: str):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    ext = filename.split('.')[-1]
+    return f'photo/{instance}/main.{ext}'
 
 class Recipe(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
     date_added = models.DateField(auto_now_add=True)
-    photo = models.ImageField(upload_to='photo/%Y/%m', blank=True, verbose_name='Фото')
+    photo = models.ImageField(upload_to=recipe_step_directory_path, blank=True, verbose_name='Фото')
     views = models.IntegerField(default=0, verbose_name='Кол-во просмотров')
     slug = models.SlugField(max_length=50, unique=True, verbose_name="Url")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='recipes', verbose_name='Категория')
@@ -109,11 +112,30 @@ class Step(models.Model):
         verbose_name = 'Шаг'
         verbose_name_plural = 'Шаги'
 
+def image_step_directory_path(instance, filename: str):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    ext = filename.split('.')[-1]
+    return f'photo/{instance.step.recipe}/{instance.step}.{ext}'
 
 class ImageStep(models.Model):
     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
-    img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения')
-    img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения')
+    img = models.ImageField(upload_to=image_step_directory_path, blank=True, verbose_name='Фото')
 
+    def save(self, *args, **kwargs):
+        super().save()
+        if self.img:
+            img = Image.open(self.img.path)
+            if img.height > 700 or img.width > 700:
+                output_size = (700, 700)
+                img.thumbnail(output_size)
+                img.save(self.img.path)
     def __str__(self):
         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
+
+# class ImageStep(models.Model):
+#     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
+#     img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения')
+#     img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения')
+#
+#     def __str__(self):
+#         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'

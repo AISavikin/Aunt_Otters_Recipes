@@ -1,10 +1,11 @@
-from django.db.models import F
+from django.db.models import F, Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 
 from .models import *
 from .forms import AddIngredientForm, CreateRecipeForm
+
 
 class Home(ListView):
     model = Recipe
@@ -46,6 +47,7 @@ class RecipeByTag(ListView):
         context['title'] = Tag.objects.get(slug=self.kwargs['slug'])
         return context
 
+
 class Single(DetailView):
     model = Recipe
     template_name = 'cooking/single.html'
@@ -59,6 +61,7 @@ class Single(DetailView):
         self.object.refresh_from_db()
         return context
 
+
 class CreateRecipe(CreateView):
     template_name = 'cooking/create-recipe.html'
     model = Recipe
@@ -67,16 +70,20 @@ class CreateRecipe(CreateView):
 
 class Search(ListView):
     template_name = 'cooking/index.html'
-    paginate_by = 3
+    paginate_by = 15
     context_object_name = 'recipes'
 
     def get_queryset(self):
-        return Recipe.objects.filter(title__icontains=self.request.GET.get('s'))
-
+        query = self.request.GET.get('s')
+        title = Recipe.objects.filter(title__icontains=query)
+        ings = Recipe.objects.filter(ingredients__ingredient__icontains=query)
+        step = Recipe.objects.filter(steps__content__icontains=query)
+        return title.union(ings, step)
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['s'] = f's={self.request.GET.get("s")}&'
         return context
+
 
 def add_ingredients(request, slug):
     recipe = Recipe.objects.get(slug=slug)

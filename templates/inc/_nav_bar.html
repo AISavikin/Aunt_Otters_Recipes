@@ -3,11 +3,15 @@
 {% get_category as cats %}
 
 <header id="topnav" class="defaultscroll sticky">
-    <div class="container" >
+    <div class="container">
         <!-- Logo container-->
         <a class="logo" href="{% url 'home' %}">
             <img src="{% static 'images/logo.png' %}" class="logo-light-mode w-50 mt-2" alt="">
         </a>
+        <div class="logo display-4 mb-3" style="font-family: 'Kaushan Script', cursive;">Aunt Otter
+            Recipes
+        </div>
+
         <!-- End Logo container-->
         <div class="menu-extras">
             <div class="menu-item">
@@ -42,20 +46,19 @@
 
         <div id="navigation">
             <!-- Navigation Menu-->
-            <ul class="navigation-menu">
+            <ul class="navigation-menu nav-right">
                 <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)" >Категории</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)">Категории</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                         {% for cat in cats %}
                             {% if cat.recipes.exists %}
-                            <li><a href="{{ cat.get_absolute_url }}" class="sub-menu-item">{{ cat }}
-                                <span class="badge bg-primary mx-2">  {{ cat.cnt }} </span></a>
-                            </li>
+                                <li><a href="{{ cat.get_absolute_url }}" class="sub-menu-item">{{ cat }}
+                                    <span class="badge bg-primary mx-2">  {{ cat.cnt }} </span></a>
+                                </li>
                             {% endif %}
                         {% endfor %}
                     </ul>
                 </li>
-
 
                 <li><a href="/admin" class="sub-menu-item">Админка</a></li>
                 <li><a href="#" class="sub-menu-item">Добавить рецепт</a></li>

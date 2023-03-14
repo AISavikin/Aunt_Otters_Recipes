@@ -1,74 +1,73 @@
 {% load static %}
-{#<div class="row mt-4">#}
-{#    {% if images|length == 1 %}#}
-{#        {% for image in images %}#}
-{#            <div class="col-12 justify-content-center">#}
-{##}
-{#                <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">#}
-{#            </div>#}
-{##}
-{#        {% endfor %}#}
-{#    {% elif images|length == 2 %}#}
-{#        {% for image in images %}#}
-{#            <div class="col-6 justify-content-center">#}
-{#                <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    {% elif images|length == 3 %}#}
-{#        {% for image in images %}#}
-{#            <div class="col-4 justify-content-center">#}
-{#                <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
-{#</div>#}
-
-
-
-<div id="grid" class="row mt-4">
+<div class="row mt-4">
     {% if images|length == 1 %}
         {% for image in images %}
-            <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">
+            <div class="col-12 justify-content-center">
+                <a href="{{ image.img.url }}"><img src="{{ image.img.url }}" class="img-fluid" alt=""></a>
+            </div>
 
         {% endfor %}
     {% elif images|length == 2 %}
         {% for image in images %}
-
-            <div class="col-lg-6 col-md-6 col-12 spacing picture-item" data-groups='["branding"]'>
-                <div class="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div class="card-img position-relative">
-                        <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">
-                        <div class="card-overlay"></div>
-
-                        <div class="pop-icon">
-                            <a href="{{ image.img_full_url }}" class="btn btn-pills btn-icon lightbox"><i
-                                    class="uil uil-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--end col-->
-
+            <div class="col-6 justify-content-center">
+                <a href="{{ image.img.url }}"><img src="{{ image.img.url }}" class="img-fluid" alt=""></a>
+            </div>
         {% endfor %}
-    {% else %}
+    {% elif images|length == 3 %}
         {% for image in images %}
-
-            <div class="col-lg-4 col-md-4 col-12 spacing picture-item" data-groups='["branding"]'>
-                <div class="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div class="card-img position-relative">
-                        <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">
-                        <div class="card-overlay"></div>
-
-                        <div class="pop-icon">
-                            <a href="{{ image.img_full_url }}" class="btn btn-pills btn-icon lightbox"><i
-                                    class="uil uil-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--end col-->
-
+            <div class="col-4 justify-content-center">
+                <a href="{{ image.img.url }}"><img src="{{ image.img.url }}" class="img-fluid" alt=""></a>
+            </div>
         {% endfor %}
     {% endif %}
+</div>
 
-</div><!--end row-->
+
+{##}
+{#<div id="grid" class="row mt-4">#}
+{#    {% if images|length == 1 %}#}
+{#        {% for image in images %}#}
+{#            <a href="{{ image.img.url }}"><img src="{{ image.img.url }}" class="img-fluid" alt=""></a>#}
+{##}
+{#        {% endfor %}#}
+{#    {% elif images|length == 2 %}#}
+{#        {% for image in images %}#}
+{##}
+{#            <div class="col-lg-6 col-md-6 col-12 spacing picture-item" data-groups='["branding"]'>#}
+{#                <div class="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">#}
+{#                    <div class="card-img position-relative">#}
+{#                        <a href="{{ image.img.url }}"><img src="{{ image.img.url }}" class="img-fluid" alt=""></a>#}
+{#                        <div class="card-overlay"></div>#}
+{##}
+{#                        <div class="pop-icon">#}
+{#                            <a href="{{ image.img.url }}" class="btn btn-pills btn-icon lightbox"><i#}
+{#                                    class="uil uil-search"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div><!--end col-->#}
+{##}
+{#        {% endfor %}#}
+{#    {% else %}#}
+{#        {% for image in images %}#}
+{##}
+{#            <div class="col-lg-4 col-md-4 col-12 spacing picture-item" data-groups='["branding"]'>#}
+{#                <div class="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">#}
+{#                    <div class="card-img position-relative">#}
+{#                        <img src="{{ image.img_middle_url }}" class="img-fluid" alt="">#}
+{#                        <div class="card-overlay"></div>#}
+{##}
+{#                        <div class="pop-icon">#}
+{#                            <a href="{{ image.img_full_url }}" class="btn btn-pills btn-icon lightbox"><i#}
+{#                                    class="uil uil-search"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div><!--end col-->#}
+{##}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{##}
+{#</div><!--end row-->#}
 
 

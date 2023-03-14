@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
+from django import forms
 from django.utils.safestring import mark_safe
 from .models import *
 
@@ -22,6 +23,9 @@ class IngredientForRecipeAdmin(admin.ModelAdmin):
 
 
 class ImageStepAdmin(admin.ModelAdmin):
+    pass
+
+class ImageStepAdmin2(admin.ModelAdmin):
     list_display = ('get_recipe', 'get_step', 'get_photo')
     fields = ('step', 'img_middle_url', 'img_full_url', 'get_photo')
     readonly_fields = ('get_photo',)
@@ -45,10 +49,12 @@ class ImageStepInline(admin.TabularInline):
 class StepAdmin(admin.ModelAdmin):
     list_display = ('recipe', 'num', 'content', 'get_photo')
     list_filter = ('recipe',)
+    fields = ('recipe', ('num', 'content'), 'get_photo' )
+    readonly_fields = ('get_photo', )
     inlines = [ImageStepInline]
 
     def get_photo(self, obj):
-        images = [f'<img src="{i.img_middle_url}" width="100">' for i in obj.images.all()]
+        images = [f'<img src="{i.img.url}" width="300"> ' for i in obj.images.all()]
         if images:
             return mark_safe(''.join(images))
         return '-'
@@ -57,15 +63,22 @@ class IngredientsInline(admin.TabularInline):
     model = IngredientForRecipe
     classes = ('collapse',)
 
+# class StepAdminForm(forms.ModelForm):
+#     img_step = forms.ImageField(required=False)
+#     class Meta:
+#         model = ImageStep
+#         fields = ('img',)
+
 class StepInline(admin.TabularInline):
     model = Step
     fields = ('num', 'content', 'get_photo')
     readonly_fields = ('get_photo',)
     show_change_link = True
     classes = ('collapse', )
+    # form = StepAdminForm
 
     def get_photo(self, obj):
-        images = [f'<p><img src="{i.img_middle_url}" width="200"></p>' for i in obj.images.all()]
+        images = [f'<p><img src="{i.img.url}" width="200"></p>' for i in obj.images.all()]
         if images:
             return mark_safe(''.join(images))
         return '-'
@@ -82,7 +95,7 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ('category', 'tags')
     readonly_fields = ('views', 'get_photo')
     fieldsets = (
-        ('Общее', {'fields': (('title', 'slug', 'category', 'description', 'video'),)}),
+        ('Общее', {'fields': (('title', 'slug', 'category', 'description', 'video', 'photo'),)}),
         ('Теги', {'fields': (('tags', 'spices'),), 'classes': ('collapse',),}),
     )
     inlines = [StepInline, IngredientsInline]

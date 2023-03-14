@@ -1,4 +1,4 @@
-{% extends 'base_old.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
@@ -7,47 +7,38 @@
     <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-xl-8 py-5 px-md-5">
-                    <div class="row pt-md-4">
-                        {% for recipe in recipes %}
-                            <div class="col-md-3">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    {% if recipe.photo %}
-                                        <a href="{{ recipe.get_absolute_url }}" class="img img-2"
-                                           style="background-image: url({{ recipe.photo.url }});"></a>
-                                    {% else %}
-                                        <a href="{{ recipe.get_absolute_url }}" class="img img-2"
-                                           style="background-image: url({% static 'images/plug.jpg' %});"></a>
-                                    {% endif %}
-                                    <div class="text text-2 pl-md-4">
-                                        <h3 class="mb-2"><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
-                                        </h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span><i class="icon-calendar mr-2"></i>{{ recipe.created_at }}</span>
-                                                <span><a href="{{ recipe.category.get_absolute_url }}"><i
-                                                        class="icon-folder-o mr-2"> {{ recipe.category.title }}</i></a><br></span>
-                                                <span><i class="icon-eye mr-2"></i>Просмотры {{ recipe.views }}</span>
-                                            </p>
-                                        </div>
-                                        {% if recipe.description %}
-                                            <p class="mb-4">{{ recipe.description | truncatechars:200 }}</p>
-                                        {% else %}
-                                            <p class="mb-4"><b>Надо вставить описание!!</b><br>{% lorem 1 %}</p>
-                                        {% endif %}
-                                        <p><a href="{{ recipe.get_absolute_url }}" class="btn-custom">Перейти к рецепту
-                                            <span
-                                                    class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
+                <div class="col-12">
+                    {% for item in recipes %}
+                        <div class="card blog blog-primary shadow rounded overflow-hidden">
+                            <div class="image position-relative overflow-hidden">
+                                {% if item.photo %}
+                                    <img src='{{ item.photo.url }}' class="img-fluid" alt="">
+                                {% else %}
+                                    <img src='{% static 'images/plug.png' %}' class="img-fluid" alt="">
+
+                                {% endif %}
+                                <div class="blog-tag">
+                                    <a href="{{ item.category.get_absolute_url }}"
+                                       class="badge bg-dark">{{ item.category }}</a>
                                 </div>
-                            </div><!-- END-->
-                        {% empty %}
-                            <h1>Нет рецептов</h1>
-                        {% endfor %}
-                        {% include 'inc/_paginator.html' %}
+                            </div>
+                            <div class="card-body content">
+                                <a href="{{ item.get_absolute_url }}"
+                                   class="h5 title text-dark d-block mb-0">{{ item.title }}</a>
+                                <p class="text-muted mt-2 mb-2">{{ item.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            {% include 'inc/_paginator.html' %}
+                        </div><!--end col-->
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                </div><!--end col-->
+
+            </div><!--end row-->
+        </div><!--end container-->
+    </section><!--en section-->
+
 {% endblock %}

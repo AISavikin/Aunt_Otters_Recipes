@@ -4,50 +4,61 @@
 
 
 {% block content %}
-<section class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-6">
+    <section class="section">
+        <div class="container">
+            <div class="row">
 
-                <div class="row" id="grid">
-                    {% for item in recipes %}
-                    <div class="col-lg-6 mb-4 pb-2 picture-item">
-                        <div class="card blog blog-primary shadow rounded overflow-hidden">
-                            <div class="image position-relative overflow-hidden">
-                                {% if item.photo %}
-                                <img src='{{ item.photo.url }}' class="img-fluid" alt="">
-                                {% else %}
-                                <img src='{% static 'images/plug.png' %}' class="img-fluid" alt="">
+                <div class="col-lg-8 col-md-6">
+                    <div class="row" id="grid">
+                        {% for item in recipes %}
+                            <div class="col-lg-6 mb-4 pb-2 picture-item">
+                                <div class="card blog blog-primary shadow rounded overflow-hidden">
+                                    <div class="image position-relative overflow-hidden">
+                                        {% if item.photo %}
+                                            <img src='{{ item.photo.url }}' class="img-fluid" alt="">
+                                        {% else %}
+                                            <img src='{% static 'images/plug.png' %}' class="img-fluid" alt="">
 
-                                {% endif %}
-                                <div class="blog-tag">
-                                    <a href="{{ item.category.get_absolute_url }}" class="badge bg-dark">{{ item.category }}</a>
+                                        {% endif %}
+                                        <div class="blog-tag">
+                                            <a href="{{ item.category.get_absolute_url }}"
+                                               class="badge bg-dark">{{ item.category }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body content">
+                                        <a href="{{ item.get_absolute_url }}"
+                                           class="h5 title text-dark d-block mb-0">{{ item.title }}</a>
+                                        <p class="text-muted mt-2 mb-2">{{ item.description }}</p>
+                                        <div class="sidebar">
+                                            <div class="widget mt-4 pt-2 text-center">
+                                                <div class="tagcloud mt-4">
+                                                    {% for tag in item.tags.all %}
+                                                        <a href="{{ tag.get_absolute_url }}"
+                                                           class="rounded text-dark">{{ tag.title }}</a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div><!--end col-->
+                        {% endfor %}
 
-                            <div class="card-body content">
-                                <a href="{{ item.get_absolute_url }}" class="h5 title text-dark d-block mb-0">{{item.title}}</a>
-                                <p class="text-muted mt-2 mb-2">{{ item.description}}</p>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                    {% endfor %}
+                    </div><!--end row-->
 
-                </div><!--end row-->
+                    <div class="row">
+                        <div class="col-12">
+                            {% include 'inc/_paginator.html' %}
+                        </div><!--end col-->
+                    </div>
+                </div><!--end col-->
 
-                <div class="row">
-                    <div class="col-12">
-                        {% include 'inc/_paginator.html' %}
-                    </div><!--end col-->
-                </div>
-            </div><!--end col-->
-
-            <div class="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <div class="sidebar sticky-bar ms-lg-4">
-                    {% include 'inc/_sidebar.html' %}
-                </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div><!--end container-->
-</section><!--en section-->
+                <div class="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="sidebar sticky-bar ms-lg-4">
+                        {% include 'inc/_sidebar.html' %}
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </section><!--en section-->
 {% endblock %}
