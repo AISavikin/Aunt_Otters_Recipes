@@ -1,3 +1,4 @@
+{% load static %}
 <footer class="footer bg-footer">
     <div class="footer-py-30 footer-bar bg-footer">
         <div class="container">
@@ -5,7 +6,7 @@
                 <div class="col-sm-2">
                     <div class="text-sm-start text-center">
                         <a href="#">
-                            <img src="images/logo-light.png" height="26" alt="">
+                            <img src="{% static 'images/logo.png' %}" height="40" alt="">
                         </a>
                     </div>
                 </div><!--end col-->
@@ -19,7 +20,6 @@
                         </p>
                     </div>
                 </div><!--end col-->
-
                 <div class="col-sm-4 mt-4 mt-sm-0">
                     <ul class="list-unstyled social-icon foot-social-icon text-sm-end text-center mb-0">
                         <li class="list-inline-item"><a href="https://1.envato.market/starty" target="_blank"

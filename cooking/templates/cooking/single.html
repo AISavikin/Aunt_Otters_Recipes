@@ -15,13 +15,11 @@
                         <h5 class="heading fw-semibold page-heading">{{ recipe.title }}</h5>
                         {% if recipe.photo %}
                             <img src="{{ recipe.photo.url }}" class="img-fluid" alt="">
-
                         {% endif %}
                         <ul class="list-inline">
                             <li class="list-inline-item text-muted h6 me-3"><i
                                     class="uil uil-calender h5 text-dark"></i> {{ recipe.date_added }}
                             </li>
-
                             <li class="list-inline-item text-muted h6"><i
                                     class="uil uil-eye h5 text-dark"></i> {{ recipe.views }}
                             </li>

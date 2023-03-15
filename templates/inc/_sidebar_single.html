@@ -5,7 +5,7 @@
 {#        {% include 'inc/_logo_img.html' %}#}
             {% if recipe.ingredients.exists %}
                 <h3>
-                    Ингридиенты
+                    Ингредиенты
                 </h3>
                 {% for ingredient in recipe.ingredients.all %}
                     <p class="lh-1">
@@ -40,34 +40,4 @@
             {% endif %}
         </div>
     </div>
-    {#   Кнопки    #}
-
-    {#    <div class="row mb-3">#}
-    {#        {% if request.user.is_authenticated %}#}
-    {#            <div class="col-md-4 col-sm-6 mb-2 ">#}
-    {#                <a href="{% url 'home' %}add_ingredients/{{ recipe.slug }}">#}
-    {#                    <button class="btn btn-primary mx-auto" type="button"> Добавить ингредиент#}
-    {#                    </button>#}
-    {#                </a>#}
-    {#            </div>#}
-    {#        {% endif %}#}
-    {#        {% if recipe.video %}#}
-    {#            <div class="col-md-4 col-sm-6 mb-2 ">#}
-    {#                <button class="btn btn-primary" type="button" data-toggle="collapse"#}
-    {#                        data-target="#collapseVideo"#}
-    {#                        aria-expanded="false" aria-controls="collapseVideo"> Видео по рецепту#}
-    {#                </button>#}
-    {#            </div>#}
-    {#        {% endif %}#}
-    {#    </div>#}
-    {# Сворацивающийся div для видео  #}
-    {#    <div class="row">#}
-    {#        {% if recipe.video %}#}
-    {#            <div class="collapse col-md-12" id="collapseVideo">#}
-    {#                <iframe width="100%" height="350" src="https://www.youtube.com/embed/{{ recipe.video }}"#}
-    {#                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"#}
-    {#                        allowfullscreen></iframe>#}
-    {#            </div>#}
-    {#        {% endif %}#}
-    {#    </div>#}
 </div><!--end col-->

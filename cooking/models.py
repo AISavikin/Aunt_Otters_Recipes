@@ -2,6 +2,7 @@ from PIL import Image
 from django.db import models
 from django.urls import reverse
 
+# dump database command: python -Xutf8 manage.py dumpdata --exclude auth.permission --exclude contenttypes --indent 2 > db.json
 
 class Category(models.Model):
     title = models.CharField(max_length=255)

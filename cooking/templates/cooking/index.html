@@ -7,7 +7,6 @@
     <section class="section">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-8 col-md-6">
                     <div class="row" id="grid">
                         {% for item in recipes %}
@@ -15,10 +14,9 @@
                                 <div class="card blog blog-primary shadow rounded overflow-hidden">
                                     <div class="image position-relative overflow-hidden">
                                         {% if item.photo %}
-                                            <img src='{{ item.photo.url }}' class="img-fluid" alt="">
+                                            <a href="{{ item.category.get_absolute_url }}"><img src='{{ item.photo.url }}' class="img-fluid" alt=""></a>
                                         {% else %}
-                                            <img src='{% static 'images/plug.png' %}' class="img-fluid" alt="">
-
+                                            <a href="{{ item.category.get_absolute_url }}"><img src='{% static 'images/plug.png' %}' class="img-fluid" alt=""></a>
                                         {% endif %}
                                         <div class="blog-tag">
                                             <a href="{{ item.category.get_absolute_url }}"
@@ -43,9 +41,7 @@
                                 </div>
                             </div><!--end col-->
                         {% endfor %}
-
                     </div><!--end row-->
-
                     <div class="row">
                         <div class="col-12">
                             {% include 'inc/_paginator.html' %}
