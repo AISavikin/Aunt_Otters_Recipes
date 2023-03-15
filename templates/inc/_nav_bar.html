@@ -4,11 +4,7 @@
 
 <header id="topnav" class="defaultscroll sticky">
     <div class="container">
-        <!-- Logo container-->
-{#        <a class="logo" href="{% url 'home' %}">#}
-{#            <img src="{% static 'images/favicon.png' %}" class="logo-light-mode mt-2" alt="">#}
-{##}
-{#        </a>#}
+
             <a href="{% url 'home' %}" class="logo display-6" style="font-family: 'Kaushan Script', cursive;">Aunt Otter Recipes</a>
 
         <!-- End Logo container-->
@@ -36,7 +32,7 @@
                     <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-4 py-0"
                          style="width: 300px;">
                         <form class="p-4" action="/search/" method="get">
-                            <input type="text" class="form-control" placeholder="Поиск по сайту" name="s">
+                            <input type="text" class="form-control" style="" placeholder="Поиск по сайту" name="s">
                         </form>
                     </div>
                 </div>
@@ -65,3 +61,11 @@
         </div><!--end navigation-->
     </div>
 </header>
+
+    <script>
+    let search_btn = document.querySelector('button')
+    let search_field = document.querySelector('input')
+    search_btn.addEventListener('click', function() {
+	search_field.focus();
+});
+    </script>
