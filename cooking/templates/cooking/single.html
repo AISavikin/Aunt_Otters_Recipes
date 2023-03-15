@@ -26,7 +26,6 @@
                                     class="uil uil-eye h5 text-dark"></i> {{ recipe.views }}
                             </li>
                         </ul>
-
                     </div>
                     {% if recipe.video %}
                         <div class="col-md-12">
@@ -46,15 +45,10 @@
                     {% for item in recipe.tags.all %}
                         <a href="{{ item.get_absolute_url }}" class="btn btn-outline-primary">{{ item.title }}</a>
                     {% endfor %}
-                </div>
-
-            </div><!--end col-->
-
-        </div><!--end row-->
+                </div><!--end col-->
+            </div><!--end row-->
         </div><!--end container-->
     </section><!--end section-->
-    <script src="{% static 'js/tobii.min.js' %}"></script>
-
 {% endblock %}
 
 
