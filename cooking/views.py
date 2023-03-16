@@ -64,9 +64,9 @@ class Single(DetailView):
 
 class CreateRecipe(CreateView):
     template_name = 'cooking/create-recipe.html'
-    model = Recipe
+    model = RecipeForModerate
     form_class = CreateRecipeForm
-
+    success_url = '/'
 
 class Search(ListView):
     template_name = 'cooking/index.html'

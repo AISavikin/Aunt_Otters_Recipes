@@ -90,7 +90,9 @@ class RecipeAdmin(admin.ModelAdmin):
         if obj.photo:
             return mark_safe(f'<img src="{obj.photo.url}" width="50">')
         return '-'
-
+@admin.register(RecipeForModerate)
+class RecipeForModerateAdmin(admin.ModelAdmin):
+    pass
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Spice)

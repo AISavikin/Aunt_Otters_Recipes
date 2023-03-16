@@ -1,3 +1,6 @@
 {% load menu %}
 {% include 'inc/_logo_img.html' %}
+{% if user.is_staff %}
+<div class="mt-3"><h4>Рецепты для проверки: {% for_moderate %}</h4></div>
+{% endif %}
 {% show_menu_cat %}

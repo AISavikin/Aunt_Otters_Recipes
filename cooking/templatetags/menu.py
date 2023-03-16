@@ -17,3 +17,7 @@ def show_menu_cat():
 def get_category():
     return Category.objects.annotate(cnt=Count('recipes'))
 
+@register.simple_tag()
+def for_moderate():
+    return RecipeForModerate.objects.count()
+

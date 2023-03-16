@@ -46,13 +46,15 @@ class Spice(models.Model):
         ordering = ['title']
         db_table = 'spices'
 
-
     def __str__(self):
         return self.title
+
+
 def recipe_step_directory_path(instance, filename: str):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     ext = filename.split('.')[-1]
     return f'photo/{instance}/main.{ext}'
+
 
 class Recipe(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
@@ -72,26 +74,18 @@ class Recipe(models.Model):
         ordering = ['-date_added']
         db_table = 'recipes'
 
-
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('recipe', kwargs={'slug': self.slug})
 
-    def save(self, *args, **kwargs):
-        super().save()
-        if self.photo:
-            img = Image.open(self.photo.path)
 
-            if img.height > 740 or img.width > 740:
-                output_size = (740, 740)
-                img.thumbnail(output_size)
-                img.save(self.photo.path)
 
 
 class Ingredient(models.Model):
     ingredient = models.CharField(max_length=200, verbose_name='Ингредиент')
+    num = models.IntegerField(verbose_name='№', default=1)
     amount = models.CharField(max_length=200, verbose_name='Количество', blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients', verbose_name='Рецепт')
 
@@ -99,7 +93,7 @@ class Ingredient(models.Model):
         return self.ingredient
 
     class Meta:
-        ordering = ['recipe']
+        ordering = ['num', 'pk']
         verbose_name = 'Ингредиент для рецепта'
         verbose_name_plural = 'Ингредиенты для рецептов'
         db_table = 'ingredients'
@@ -119,10 +113,12 @@ class Step(models.Model):
         verbose_name_plural = 'Шаги'
         db_table = 'steps'
 
+
 def image_step_directory_path(instance, filename: str):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     ext = filename.split('.')[-1]
     return f'photo/{instance.step.recipe}/{instance.step}.{ext}'
+
 
 class ImageStep(models.Model):
     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
@@ -141,6 +137,20 @@ class ImageStep(models.Model):
                 output_size = (740, 740)
                 img.thumbnail(output_size)
                 img.save(self.img.path)
+
     def __str__(self):
         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
+
+class RecipeForModerate(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    description = models.TextField(blank=True, verbose_name='Описание')
+    content = models.TextField(blank=True, verbose_name='Контент')
+
+    class Meta:
+        verbose_name = 'Рецепт для модерации'
+        verbose_name_plural = 'Рецепт для модерации'
+        db_table = 'recipes_for_moderate'
+
+    def __str__(self):
+        return self.title
 

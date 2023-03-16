@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ingredient, Recipe
+from .models import RecipeForModerate
 
 
 class AddIngredientForm(forms.Form):
@@ -9,16 +9,12 @@ class AddIngredientForm(forms.Form):
 class CreateRecipeForm(forms.ModelForm):
     class Meta:
 
-        model = Recipe
-        fields = ['title', 'description', 'slug', 'category', 'tags']
+        model = RecipeForModerate
+        fields = ['title', 'description', 'content']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
-            'tags': forms.Select(attrs={'class': 'form-select', 'size': 10}),
-            'photo': forms.FileInput(attrs={'class': 'form-file form-control'})
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Напишите описание, пожалуйста у админа с этим сложности'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 7}),
         }
 
 
