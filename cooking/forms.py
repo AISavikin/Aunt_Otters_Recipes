@@ -4,8 +4,7 @@ from .models import Ingredient, Recipe
 
 class AddIngredientForm(forms.Form):
     ingredient = forms.CharField(label='Ингредиент', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    amount = forms.FloatField(label='Количество', min_value=0, required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'value': 0}))
-    unit = forms.CharField(label='Единицы измерения', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    amount = forms.CharField(label='Количество', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class CreateRecipeForm(forms.ModelForm):
     class Meta:

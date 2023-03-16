@@ -20,7 +20,7 @@
                             {% csrf_token %}
                             {{ form.non_field.errors }}
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <div class="mb-3">
                                         <label class="form-label" for="{{ form.ingredient.id_for_label }}">Ингридиент:
                                             <span
@@ -31,7 +31,7 @@
                                         </div>
                                     </div>
                                 </div><!--end col-->
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="{{ form.amount.id_for_label }}">Количество: </label>
                                         {{ form.amount }}
@@ -39,17 +39,6 @@
                                             {{ form.amount.errors }}
                                         </div>
                                     </div>
-                                </div><!--end col-->
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="{{ form.unit.id_for_label }}">Единицы
-                                            измерения:</label>
-                                        {{ form.unit }}
-                                        <div class="invalid-feedback">
-                                            {{ form.unit.errors }}
-                                        </div>
-                                    </div>
-
                                 </div><!--end col-->
                             </div><!--end row-->
                             <div class="col-12">

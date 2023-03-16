@@ -2,7 +2,6 @@ from PIL import Image
 from django.db import models
 from django.urls import reverse
 
-# dump database command: python -Xutf8 manage.py dumpdata --exclude auth.permission --exclude contenttypes --indent 2 > db.json
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -85,15 +84,15 @@ class Recipe(models.Model):
         if self.photo:
             img = Image.open(self.photo.path)
 
-            if img.height > 700 or img.width > 700:
-                output_size = (700, 700)
+            if img.height > 740 or img.width > 740:
+                output_size = (740, 740)
                 img.thumbnail(output_size)
                 img.save(self.photo.path)
 
 
 class Ingredient(models.Model):
     ingredient = models.CharField(max_length=200, verbose_name='Ингредиент')
-    amount = models.CharField(max_length=200, verbose_name='Количество')
+    amount = models.CharField(max_length=200, verbose_name='Количество', blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients', verbose_name='Рецепт')
 
     def __str__(self):
@@ -138,9 +137,10 @@ class ImageStep(models.Model):
         super().save()
         if self.img:
             img = Image.open(self.img.path)
-            if img.height > 700 or img.width > 700:
-                output_size = (700, 700)
+            if img.height > 740 or img.width > 740:
+                output_size = (740, 740)
                 img.thumbnail(output_size)
                 img.save(self.img.path)
     def __str__(self):
         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
+
