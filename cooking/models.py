@@ -12,6 +12,7 @@ class Category(models.Model):
         ordering = ['title']
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+        db_table = 'categorys'
 
     def __str__(self):
         return self.title
@@ -28,6 +29,7 @@ class Tag(models.Model):
         ordering = ['title']
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+        db_table = 'tags'
 
     def __str__(self):
         return self.title
@@ -43,6 +45,8 @@ class Spice(models.Model):
         verbose_name = 'Специя'
         verbose_name_plural = 'Специи'
         ordering = ['title']
+        db_table = 'spices'
+
 
     def __str__(self):
         return self.title
@@ -67,6 +71,8 @@ class Recipe(models.Model):
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
         ordering = ['-date_added']
+        db_table = 'recipes'
+
 
     def __str__(self):
         return self.title
@@ -85,10 +91,9 @@ class Recipe(models.Model):
                 img.save(self.photo.path)
 
 
-class IngredientForRecipe(models.Model):
+class Ingredient(models.Model):
     ingredient = models.CharField(max_length=200, verbose_name='Ингредиент')
-    amount = models.FloatField(default=0, verbose_name='Количество')
-    unit = models.CharField(max_length=100, blank=True, verbose_name='Единица измерения')
+    amount = models.CharField(max_length=200, verbose_name='Количество')
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients', verbose_name='Рецепт')
 
     def __str__(self):
@@ -98,12 +103,13 @@ class IngredientForRecipe(models.Model):
         ordering = ['recipe']
         verbose_name = 'Ингредиент для рецепта'
         verbose_name_plural = 'Ингредиенты для рецептов'
+        db_table = 'ingredients'
 
 
 class Step(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='steps', verbose_name='Рецепт')
     content = models.TextField(blank=True, verbose_name='Контент')
-    num = models.IntegerField(default=0)
+    num = models.IntegerField(default=1, verbose_name='№')
 
     def __str__(self):
         return f'{self.recipe} шаг {self.num}'
@@ -112,6 +118,7 @@ class Step(models.Model):
         ordering = ['num']
         verbose_name = 'Шаг'
         verbose_name_plural = 'Шаги'
+        db_table = 'steps'
 
 def image_step_directory_path(instance, filename: str):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -121,6 +128,11 @@ def image_step_directory_path(instance, filename: str):
 class ImageStep(models.Model):
     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
     img = models.ImageField(upload_to=image_step_directory_path, blank=True, verbose_name='Фото')
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+        db_table = 'image_steps'
 
     def save(self, *args, **kwargs):
         super().save()
@@ -132,11 +144,3 @@ class ImageStep(models.Model):
                 img.save(self.img.path)
     def __str__(self):
         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'
-
-# class ImageStep(models.Model):
-#     step = models.ForeignKey(Step, on_delete=models.CASCADE, related_name='images', verbose_name='Шаг')
-#     img_full_url = models.CharField(max_length=255, verbose_name='Url Полного изображения')
-#     img_middle_url = models.CharField(max_length=255, verbose_name='Url среднего изображения')
-#
-#     def __str__(self):
-#         return f'Шаг {self.step.num} для рецепта {self.step.recipe.title}'

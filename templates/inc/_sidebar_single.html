@@ -10,10 +10,10 @@
                 {% for ingredient in recipe.ingredients.all %}
                     <p class="lh-1">
                         <span class="fw-bold ">{{ ingredient }}</span> -
-                        {% if ingredient.amount == 0 %}
-                            <span class="font-italic"> По вкусу </span>
+                        {% if ingredient.amount %}
+                            <span class="font-italic">  {{ ingredient.amount }}</span>
                         {% else %}
-                            <span class="font-italic">  {{ ingredient.amount|floatformat }} {{ ingredient.unit }}</span>
+                            <span class="font-italic"> По вкусу </span>
                         {% endif %}
                     </p>
                 {% endfor %}

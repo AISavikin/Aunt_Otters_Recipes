@@ -91,7 +91,7 @@ def add_ingredients(request, slug):
         form = AddIngredientForm(request.POST)
         if form.is_valid():
             form.cleaned_data['recipe'] = recipe
-            IngredientForRecipe.objects.create(**form.cleaned_data)
+            Ingredient.objects.create(**form.cleaned_data)
             form = AddIngredientForm()
     else:
         form = AddIngredientForm()

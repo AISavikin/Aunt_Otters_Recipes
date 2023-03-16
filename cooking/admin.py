@@ -16,30 +16,12 @@ class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-class IngredientForRecipeAdmin(admin.ModelAdmin):
-    list_display = ('ingredient', 'recipe', 'amount', 'unit')
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    list_display = ('ingredient', 'recipe', 'amount')
     list_display_links = ('ingredient',)
     list_filter = ('recipe',)
 
-
-class ImageStepAdmin(admin.ModelAdmin):
-    pass
-
-class ImageStepAdmin2(admin.ModelAdmin):
-    list_display = ('get_recipe', 'get_step', 'get_photo')
-    fields = ('step', 'img_middle_url', 'img_full_url', 'get_photo')
-    readonly_fields = ('get_photo',)
-
-    def get_photo(self, obj):
-        if obj.img_middle_url:
-            return mark_safe(f'<img src="{obj.img_middle_url}" width="400">')
-        return '-'
-
-    def get_step(self, obj):
-        return obj.step.num
-
-    def get_recipe(self, obj):
-        return obj.step.recipe.title
 
 
 class ImageStepInline(admin.TabularInline):
@@ -60,7 +42,7 @@ class StepAdmin(admin.ModelAdmin):
         return '-'
 
 class IngredientsInline(admin.TabularInline):
-    model = IngredientForRecipe
+    model = Ingredient
     classes = ('collapse',)
 
 # class StepAdminForm(forms.ModelForm):
@@ -109,9 +91,7 @@ class RecipeAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="50">')
         return '-'
 
-admin.site.register(ImageStep, ImageStepAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(IngredientForRecipe, IngredientForRecipeAdmin)
 admin.site.register(Spice)
 admin.site.register(Step, StepAdmin)
