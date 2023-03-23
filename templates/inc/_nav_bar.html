@@ -54,8 +54,9 @@
                         {% endfor %}
                     </ul>
                 </li>
-
+                {% if user.is_staff %}
                 <li><a href="/admin" class="sub-menu-item">Админка</a></li>
+                {% endif %}
                 <li><a href="{% url 'create_recipe' %}" class="sub-menu-item">Добавить рецепт</a></li>
             </ul>
         </div><!--end navigation-->

@@ -6,21 +6,21 @@
     <section class="bg-half-170">
         <div class="container">
             <div class="row">
-                <div class="col-12 py-5 px-md-5">
-                    <div class="row pt-md-4">
-                        <form action="{% url 'create_recipe' %}" method="post">
-                            <div class="form-group">
-                                <div class="card-title">
-                                    <h1>Добавить рецепт</h1>
-                                </div>
-                                <div class="card card-body">
-                                    {% csrf_token %}
-                                    {{ form.as_div }}
-                                    <input type="submit" value="Добавить" class="btn btn-primary form-control mt-3">
-                                </div>
+                <div class="col-12">
+                    <p>Вы можете отправить свой рецепт на модерацию, через какое-то время он вероятно появится на
+                        сайте</p>
+                    <form action="{% url 'create_recipe' %}" method="post">
+                        <div class="form-group">
+                            <div class="card-title">
+                                <h1>Добавить рецепт</h1>
                             </div>
-                        </form>
-                    </div>
+                            <div class="card card-body">
+                                {% csrf_token %}
+                                {{ form.as_div }}
+                                <input type="submit" value="Добавить" class="btn btn-primary form-control mt-3">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

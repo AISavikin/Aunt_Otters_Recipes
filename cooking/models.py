@@ -84,8 +84,8 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
-    ingredient = models.CharField(max_length=200, verbose_name='Ингредиент')
     num = models.IntegerField(verbose_name='№', default=1)
+    ingredient = models.CharField(max_length=200, verbose_name='Ингредиент')
     amount = models.CharField(max_length=200, verbose_name='Количество', blank=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients', verbose_name='Рецепт')
 
